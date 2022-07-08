@@ -1,0 +1,31 @@
+---
+title: stk deploy 
+weight: 26
+description: Nesta seção, você encontra mais informações sobre o comando 'stk deploy'.
+---
+
+O comando **`stk deploy <nome-ambiente>`** executa os comandos que realizam o deploy da stack no ambiente informado.
+
+### **Como funciona?** 
+O comando deve ser executado na pasta da stack criada (ambiente ou aplicação). Ele busca entre os plugins aplicados na stack, qual comando será executado para rodar o script de deploy dessa stack. Esses comandos de deploy são definidos no arquivo **`plugin.yml`** na seção **lifecycle/deploy**.
+
+### **Parâmetros**
+Confira a opção disponível no comando:  
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `STAGE` | Nome do stage onde os comandos de deploy devem ser executados. O preenchimento do `STAGE` é opcional. |
+
+
+
+### **Exemplo**
+Veja um exemplo abaixo:
+
+1. Executa os comandos de deploy definidos pela stack para o stage 'prod': 
+```
+stk deploy prod
+```
+
+>**Nota:** O output do comando depende do plugin de deploy aplicado. Veja um exemplo: 
+
+![](/v3.0.0/stkgifs/stk-deploy.gif)

@@ -1,0 +1,49 @@
+---
+title: stk create app
+weight: 22
+description: Nesta seção, você encontra mais informações sobre o comando 'stk create app'.
+---
+
+
+O comando **`stk create app`** permite criar um app para implementar as funcionalidades de uma aplicação. É possível relacionar essa aplicação com um ambiente para fazer uso de recursos compartilhados definidos nele, e também atribuir um repositório git remoto para a aplicação.
+
+### **Como funciona?**
+Ele funciona com a utilização de vários parâmetros. Para acessar utilize o comando: **`stk create app --help`**.
+
+### **Como criar uma aplicação?**
+Para criar um projeto de aplicação, é preciso informar os seguintes parâmetros:
+
+```
+--env-url <environment-repo-url>
+--branch
+--template
+--stages
+```
+
+### **Parâmetros**
+Confira a opção disponível no comando:
+
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `NAME` | Define o nome da aplicação. Se o nome não for informado, é definido o nome do repositório do parâmetro `--remote`.   |
+| `--template` | Define qual template será aplicado para criar a aplicação. O formato é `<catalogo>/<template>` e o template precisa conter o tipo `app-template`.   |
+| `--env-url` | Define o ambiente compartilhado com recursos usados pela aplicação. A URL do projeto Git precisa ser informada.|
+| `--branch` | Define a branch que será usada quando você clonar o repositório Git apontado no parâmetro `--env-url`. |
+| `--stages` | Define os arquivos de configuração dos estágios da aplicação. O formato de um estágio é `<nome>:<conta-aws>:<regiao>`. Você pode definir vários estágios separando-os por vírgula. |
+| `--remote <git-url>` | Define a URL do repositório remoto Git que é usada como origem do projeto. Se não for informado, o repositório remoto não será configurado e você deve fazer o processo manualmente.|
+| `--template-path` | Aplica um template que ainda não foi publicado em uma stack. Este parâmetro não pode ser usado junto com o `--template`.|
+| `--stackfile` | Define um stackfile para ser utilizado na criação do app. O formato esperado é: `<nome-stack>/<nome-stackfile>`. Se o `<nome-stack>` for o único a ser informado , o stackfile padrão (default.yaml) da stack é quem será utilizado. Também é possível informar o caminho absoluto até o arquivo de `<nome-stackfile>.yaml`.|
+
+## **Exemplos de execução do comando.**
+### **Exemplo de `create app` regex**
+
+![](/v3.0.0/stkgifs/stk-create-app-input-regex-validator.gif)
+
+### **Exemplo de `create app` Kotlin**
+
+![](/v3.0.0/stkgifs/stk-create-app-kotlin-new.gif)
+
+### **Exemplo de `create app` .NET**
+
+![](/v3.0.0/stkgifs/stk-create-app-dotnet.gif)

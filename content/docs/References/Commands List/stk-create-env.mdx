@@ -1,0 +1,61 @@
+---
+title: stk create env
+weight: 23
+description: Nesta seção,  você encontra mais informações sobre o comando 'stk create env'.
+---
+
+
+O comando **`stk create env`** permite criar um ambiente para fazer o deploy de uma aplicação. Esse ambiente pode ter funcionalidades estendidas por meio de plugins.
+O comando também é usado para definir stages da configuração do ambiente criado, e para atribuir um repositório remoto ao projeto.
+
+### **Como funciona?**
+Ele funciona na utilização de vários parâmetros. Para acessar utilize o comando: **`stk create env --help`**.
+
+#### **Como criar um ambiente?**
+Para criar um ambiente, é preciso informar os seguintes parâmetros:
+```
+--stage <[name:accountNumber:region]>
+--template
+--remote <git-url>
+```
+
+### **Parâmetros**
+Confira a opção disponível no comando:
+
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `NAME` | Define o nome da aplicação. Se o nome não for informado, é definido o nome do repositório do parâmetro `--remote`.   |
+| `--template` | Define qual template será aplicado para criar a aplicação. O formato é `<stack>/<template>` e o template precisa conter o tipo `app-template`.   |
+| `--env-url` | Define o ambiente compartilhado com recursos usados pela aplicação. A URL do projeto Git precisa ser informada.|
+| `--stages` | Define os arquivos de configuração dos estágios da aplicação. O formato de um estágio é `<nome>:<conta-aws>:<regiao>`. Você pode definir vários estágios separando-os por vígula. |
+| `--remote <git-url>` | Define a URL do repositório remoto Git que é usada como origem do projeto. Se não for informado, o repositório remoto não será configurado e você deve fazer o processo manualmente.|
+| `--template-path` | Aplica um template que ainda não foi publicado em um catálogo. Este parâmetro não pode ser usado junto com o `--template`.|
+| `--stackfile` | Define um stackfile para ser utilizado na criação do app. O formato esperado é: `<nome-stack>/<nome-stackfile>`. Se o `<nome-stack>` for o único a ser informado, o stackfile padrão (default.yaml) da stack é quem será utilizado. Também é possível informar o caminho absoluto até o arquivo de `<nome-stackfile>.yaml`. |
+
+
+
+### **Exemplos**
+
+1. O exemplo mostra a criação de:
+- Uma stack de aplicação com o nome **my-ecs-cluster**.
+- O template inicial é **ecs-cluster-template** do catálogo **ecs-stack**.
+- E o repositório é associado como a origem do projeto:
+
+```
+stk create env –template ecs-stack/ecs-cluster-template –remote git@github.com:my-org/my-ecs-cluster.git my-ecs-cluster
+
+```
+
+2. Criação de uma stack de aplicação baseada no template armazenado em **~/projects/my-template** com o nome **test-my-template**:
+
+```
+stk create env –template-path ~/projects/my-template
+
+```
+
+Veja abaixo:
+![](/v3.0.0/stkgifs/stk-create-env.gif)
+
+### **Veja Também**
+- [<ins>**stk update env**</ins>]({{< ref path="/stk-update-env.md" >}})

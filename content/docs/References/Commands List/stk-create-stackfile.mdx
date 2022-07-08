@@ -1,0 +1,66 @@
+---
+title: stk create stackfile
+weight: 20
+description: Nesta seção, você encontra mais informações sobre o comando 'stk create stackfile'.
+---
+
+O comando **`stk create stackfile`** cria um arquivo base de um stackfile no diretório corrente.
+
+### **Como funciona?**
+O comando cria um arquivo base para ser usado no desenvolvimento de um stackfile. Ao ser executado, será criado um arquivo `<nome-stackfile>.yaml` que deve ser editado para definir a composição de template e plugins da stack.
+
+
+### **Parâmetros**
+Confira as opções disponíveis no comando:
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `NAME` | Define o nome do arquivo de stackfile.|
+| `--description` | Descrição do arquivo de stackfile. |
+
+### **Exemplo**
+Veja o exemplo abaixo de como criar o arquivo de stackfile:
+
+1. Rode em seu terminal:
+```
+stk create stackfile nome-do-seu-stackfile
+```
+
+2. Informe a descrição do seu stackfile:
+```
+? Description: Descreva aqui seu stackfile
+```
+
+3. O retorno será:
+```
+- Stackfile nome-do-seu-stackfile successfully created.
+```
+
+4. O arquivo `nome-do-seu-stackfile.yaml` será criado no diretório corrente:
+```yaml
+type: app
+description: Describe your stackfile explaining its purpose
+template: <stack-name>/<template-name>
+plugins:
+- plugin: <stack-name>/<plugin-name>
+  inputs:
+    some_input: value
+```
+
+### **Atributos**:
+- **type**: Indica se o stackfile pode ser usado em um `stk create app` ou `stk create env`.
+- **description**: Descrição do stackfile que será apresentada no comando `stk list stackfile`.
+- **template**: Template a ser usado para criar o app ou env no formato `nome-stack/nome-template`.
+- **inputs**: Objetos com os valores dos inputs que serão passados para o template. Eles não são obrigatórios. Caso algum valor de input definido no template não seja informado, ele será perguntado para o usuário.
+- **plugins**: Lista de objetos que indicam quais plugins serão aplicados.
+- **plugin**: Plugin a ser aplicado no formato `nome-stack/nome-plugin`.
+- **inputs**: Objetos com os valores dos inputs que serão passados para o plugin. Eles não são obrigatórios. Caso algum valor de input definido no template não seja informado, ele será perguntado para o usuário.
+
+## **Exemplo de execução do comando**
+
+
+![](/v3.2.0/stkgifs/stk-create-stackfile.gif)
+
+
+### **Veja Também**
+- [<ins>**stk list stackfile**</ins>]({{< ref path="/stk-list-stackfile.md" >}})

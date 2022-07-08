@@ -1,0 +1,59 @@
+---
+title: stk list stackfile
+weight: 21
+description: Nesta seção, você encontra mais informações sobre o comando 'stk list stackfile'.
+---
+
+O comando **`stk list stackfile`** lista os `stackfiles` disponíveis por padrão nas stacks instaladas no CLI. 
+
+É possível aplicar filtros através dos parâmetros `--filter`, `--app` e `--env`. 
+
+Os stackfiles podem ser usados nos comandos **`stk create app`** e **`stk create env`** para permitir a criação de um template e um conjunto de plugins pré-definidos, através de um único comando.
+
+### **Como funciona?**
+O comando exibe uma lista dos stackfiles disponíveis por stack.
+
+Esta lista contém:
+- Nome do stackfile.
+- Descrição do stackfile.
+- Tipo do stackfile (app ou env).
+
+### **Parâmetros**
+O formato do comando é:
+
+`stk list stackfile [STACK] --filter "some text in name or description" --app --env`
+
+Confira os parâmetros disponíveis no comando:
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `STACK` | Exibe apenas os stackfiles da stack informada. Ele é um parâmetro opcional e quando é omitido, exibe os stackfiles de todas as stacks instaladas. |
+| `--filter` ou `-F` | Filtra os stackfiles por valores que estão em seu nome ou descrição. Use aspas para incluir espaços no filtro. Esse é um parâmetro opcional. |
+| `--app` ou `-A` | Exibe apenas stackfiles do tipo `app`. Esse é um parâmetro opcional. |
+| `--env` ou `-E` | Exibe apenas stackfiles do tipo `env`. Esse é um parâmetro opcional. |
+
+
+### **Exemplos**
+Veja alguns exemplos do comando abaixo:
+- Listar todos stackfiles disponíveis em todas as stacks:
+
+    `stk list stackfile`
+
+- Listar stackfiles de uma stack específica:
+
+    `stk list stackfile some-stack-name`
+
+- Listar stackfiles do tipo app de uma stack específica:
+
+    `stk list stackfile some-stack-name --app`
+
+- Listar stackfiles do tipo env de todas as stacks:
+
+    `stk list stackfile --env`
+
+- Listar stackfiles do que contenham em sua descrição ou nome o termo "python":
+
+    `stk list stackfile --filter python`
+
+    ### **Veja Também**
+- [<ins>**stk create stackfile**</ins>]({{< ref path="/stk-create-stackfile.md" >}})

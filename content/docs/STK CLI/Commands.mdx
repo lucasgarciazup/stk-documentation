@@ -1,0 +1,58 @@
+---
+title: Comandos
+weight: 4
+description: 'Nesta seção, você encontra todas as informações sobre os comandos do STK CLI.'
+---
+
+---
+
+Os comandos do STK CLI podem ser divididos em três categorias:
+- **Comandos Core:** Utilizados tanto por criadores quanto por usuários.
+- **Comandos de Criador:** Utiliados na jornada do criador, isto é, comandos focados na criação e disponibilização de templates, plugins, stacks, e stackfiles.
+- **Comandos de Usuário:**  Utilizados na jornada do usuário, para o consumo das stacks disponíveis para a criação de aplicações e ambientes.
+
+### **Comandos Core**
+
+Comando   | Descrição
+--------- | ------
+[<ins>**stk init**</ins>]({{< ref path="/stk-init.md" >}}) | Utilizado na inicialização e configuração da ferramenta STK CLI no seu ambiente.
+[<ins>**stk --help**</ins>]({{< ref path="/stk-help.md" >}}) | O STK CLI possui a opção **`--help`** para mostrar mais informações sobre os comandos e seus parâmetros.
+[<ins>**stk --version**</ins>]({{< ref path="/stk-version.md" >}}) | O STK CLI possui a opção **`--version`** para mostrar a versão atual instalada.
+[<ins>**stk upgrade**</ins>]({{< ref path="/stk-upgrade.md" >}}) | Atualiza a versão do CLI quando há uma nova disponível. 
+[<ins>**stk login**</ins>]({{< ref path="/stk-login.md" >}}) | Realiza o login numa conta do StackSpot Enterprise.
+[<ins>**stk logout**</ins>]({{< ref path="/stk-logout.md" >}}) | Realiza o logout da conta do StackSpot Enterprise.
+
+### **Comandos de Criador**
+
+Comando   | Descrição
+--------- | ------
+[<ins>**stk create stack**</ins>]({{< ref path="/stk-create-stack.md" >}}) | Cria um repositório para a stack de templates e plugins.
+[<ins>**stk delete stack**</ins>]({{< ref path="/stk-delete-stack.md" >}}) |Remove uma stack importada previamente com o comando **`stk import stack`**. 
+[<ins>**stk create template**</ins>]({{< ref path="/stk-create-template.md" >}}) | Cria a estrutura de um template de stack. Essa estrutura contém os arquivos necessários para criar um template. Este template será usado no `stk create app`, no `stk create env` ou em ambos os comandos.
+[<ins>**stk delete template**</ins>]({{< ref path="/stk-delete-template.md" >}}) | Remove templates dentro de um projeto de stack. Para fazer isso, o usuário precisa mandar a alteração para o GitHub através do comando `git push`.  
+| [<ins>**stk add template**</ins>]({{< ref path="/stk-add-template.md" >}}) | É utilizado para adicionar templates às stacks já criadas pelo comando `stk create stack`. 
+[<ins>**stk create plugin**</ins>]({{< ref path="/stk-create-plugin.md" >}}) | Permite criar novos plugins para a StackSpot.  
+[<ins>**stk add plugin**</ins>]({{< ref path="/stk-add-plugin.md" >}}) | É utilizado para adicionar plugins às stack já criadas pelo comando `stk create stack`.  
+[<ins>**stk delete plugin**</ins>]({{< ref path="/stk-delete-plugin.md" >}}) | Remove plugins dentro de um projeto stack. Para fazer isso, o criador precisa mandar a alteração para o GitHub através do comando `git push`.   
+[<ins>**create stackfile**</ins>]({{< ref path="/stk-create-stackfile.md" >}}) | Cria um arquivo base de um stackfile no diretório corrente.  
+
+### **Comandos de Usuário**  
+
+Comando   | Descrição
+--------- | ------
+[<ins>**stk import stack**</ins>]({{< ref path="/stk-import-stack.md" >}}) | Responsável por adicionar uma stack ao seu projeto.  
+[<ins>**stk update stack**</ins>]({{< ref path="/stk-update-stack.md" >}}) | Atualiza todas as stacks disponíveis na StackSpot ou qualquer outra na sua aplicação. Esta atualização é necessária quando o nome da stack a ser atualizado é omitido.  
+[<ins>**stk list stack**</ins>]({{< ref path="/stk-list-stack.md" >}}) | Lista as stacks disponíveis vindas da instalação ou que foram adicionadas pelo comando `stk add stack`. O comando também é capaz de filtrar as stacks pelo nome delas ou pela descrição através do parâmetro `--filter`.  
+[<ins>**stk list template**</ins>]({{< ref path="/stk-list-template.md" >}})  | Retorna uma lista de todos os templates disponíveis nas stacks do usuário. Com isso, os templates podem ser usados para criar stacks de aplicação ou de ambiente.  
+[<ins>**stk list plugin**</ins>]({{< ref path="/stk-list-plugin.md" >}}) | Lista os plugins disponíveis na stack oficial da StackSpot, e as adicionadas pelo próprio usuário. O comando também é capaz de filtrar os plugins por tipo, permitindo ao usuário saber quais se aplicam em uma stack de aplicação ou em uma de ambiente.  
+[<ins>**stk apply plugin**</ins>]({{< ref path="/stk-apply-plugin.md" >}}) | Usado no seu projeto de ambiente e aplicação para adicionar novas funcionalidades.  
+[<ins>**stk list stackfile**</ins>]({{< ref path="/stk-list-stackfile.md" >}}) | Lista os stackfiles disponíveis por padrão nas stacks instaladas no CLI. 
+[<ins>**stk create app**</ins>]({{< ref path="/stk-create-app.md" >}}) | Permite criar um app para implementar as funcionalidades de uma aplicação. É possível relacionar essa aplicação com um ambiente para fazer uso de recursos compartilhados definidos nele, e também atribuir um repositório Git remoto para a aplicação.  
+[<ins>**stk create env**</ins>]({{< ref path="/stk-create-env.md" >}}) | Permite criar um ambiente para fazer o deploy de uma aplicação. Esse ambiente pode ter funcionalidades estendidas por meio de plugins. O comando também é usado para definir stages da configuração do ambiente criado, e para atribuir um repositório remoto ao projeto.  
+[<ins>**stk update env**</ins>]({{< ref path="/stk-update-env.md" >}}) | Responsável por atualizar os stages (estágios) do aplicativo (app) criado, baseado nos stages do env (ambiente).  
+[<ins>**stk add stages**</ins>]({{< ref path="/stk-add-stages.md" >}}) | Adiciona novos arquivos de configuração de JSONs para os estágios (stages) do diretório de uma stack que foi criada com o comando `stk create app` ou `stk create env`.  
+[<ins>**stk deploy**</ins>]({{< ref path="/stk-deploy.md" >}}) | Executa os comandos que realizam o deploy da stack no ambiente informado.  
+
+Veja a lista completa:
+
+- [<ins>**Lista de comandos**</ins>]({{< ref path="/docs/References/Commands List" >}}).

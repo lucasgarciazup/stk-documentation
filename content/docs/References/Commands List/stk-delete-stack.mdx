@@ -1,0 +1,57 @@
+---
+title: stk delete stack
+weight: 9
+description: Nesta seção, você encontra mais informações sobre o comando 'stk delete stack'.
+---
+
+O comando **`stk delete stack`** remove uma stack importada previamente com o comando **`stk import stack`**.
+
+ ### **Como funciona?**
+Ao executar o comando `stk delete stack <nome-stack>`, a stack que havia sido importada será removida da máquina do usuário, mas nenhum projeto será afetado.
+
+A sintaxe do comando é: **`stk delete stack <nome-stack>`**.  
+
+Ao executar o comando a stack que havia sido importada será removida da máquina do usuário, mas nenhum projeto será afetado.
+
+## **Exemplos**
+
+O exemplo abaixo mostra como remover a stack `my-template` da stack `my-stack`.
+
+1. As stacks serão listadas em qualquer diretório.
+```
+stk list stack
+```
+2. Veja a lista das atuais stacks:
+
+```
++---------------------+---------------------------------+
+| name                | description                     |
++---------------------+---------------------------------+
+| stack-hello-stacker | Stack Hello Stacker Description |
++---------------------+---------------------------------+
+``` 
+3. A stack com o nome `stack-hello-stacker` será removida.
+```
+stk delete stack stack-hello-stacker
+```
+4. Uma mensagem será exibida confirmando a remoção da stack:
+```
+- Stack stack-hello-stacker removed from path /home/stackspot/.stk/plugins/stack-hello-stacker
+```
+6. É possível listar novamente as stacks e confirmar que a stack foi removida.
+
+```
+stk list stack
+> No stacks found
+```
+
+Veja a execução abaixo:  
+
+![](/v3.2.0/stkgifs/stk-delete-template.gif)
+
+
+### **Veja Também**
+- [<ins>**stk create stack**</ins>]({{< ref path="/stk-create-stack.md" >}})
+- [<ins>**stk import stack**</ins>]({{< ref path="/stk-import-stack.md" >}})
+- [<ins>**stk update stack**</ins>]({{< ref path="/stk-update-stack.md" >}})
+- [<ins>**stk list stack**</ins>]({{< ref path="/stk-list-stack.md" >}})

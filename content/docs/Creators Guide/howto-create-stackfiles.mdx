@@ -1,0 +1,127 @@
+---
+title: Criar Stackfiles
+weight: 7
+description: >-
+  Nesta seção, você encontra detalhes de como criar um Stackfile.
+---
+
+## **O que são stackfiles?**
+
+Stackfiles são bundles, ou seja, um conjunto de Templates e Plugins predefinidos de uma Stack que serão aplicados nos comandos [**`stk create app`**]({{< ref path="/docs/References/Commands List/stk-create-app.md" >}})) ou [**`stk create env`**]({{< ref path="/docs/References/Commands List/stk-create-env.md" >}})).
+
+
+Quando você utiliza um Stackfile, você pode criar um **`env`** ou um **`app`** e aplicá-los em um conjunto de Plugins com um único comando do **`stk cli`**.
+
+## **Quando usar Stackfiles?**
+
+1. Em cenários onde um bundle de Template/Plugin é frequentemente usado dentro de uma Stack. 
+2. Os Stackfiles são utéis para evitar que você utilize vários comandos para criar um projeto. Por isso, você pode criar um bundle de templates e plugins predefinidos e colocá-los dentro do contexto de um projeto.
+
+
+## **Como criar Stackfiles?**
+
+Siga os passos abaixo:
+
+### **Passo 1. Criar uma pasta com o nome 'stackfiles' dentro do repositório da sua Stack**
+
+### **Passo 2. Executar o comando**
+
+Dentro da pasta Stackfiles, execute o comando abaixo e escolha um nome para o seu Stackfile: 
+
+```
+stk create stackfile <nome-stackfile>
+```
+### **Passo 2. Editar e definir o arquivo `<nome-stackfile>.yaml`** 
+O arquivo yaml será criado com o nome que você definiu no passo anterior. Você deve editar e definir os itens abaixo:
+- O tipo **`env`** ou **`app`**
+- O Template que será usado
+- Os Plugins que serão aplicados
+
+> A sequência de aplicação de Plugins é definida no arquivo.
+ 
+Veja abaixo a estrutura de um Stackfile:
+
+```yaml
+type: app
+description: Python Rest API using flask
+template: stack-python/python-app-template
+inputs:
+  source_folder: src 
+plugins:
+  - plugin: stack-python/flask-api-plugin
+    inputs:
+      enable_cors: true
+  - plugin: stack-python/zappa-deploy-plugin
+```
+
+### **Atributos:**
+- **type**: Indica se o Stackfile pode ser usado em um **`stk create app`** ou **`stk create env`**.
+- **description**: Descrição do Stackfile que será apresentada no comando **`stk list stackfile`**.
+- **template**: Template a ser usado para criar o app ou env no formato **`nome-stack/nome-template`**.
+- **inputs**: Objetos com os valores dos inputs que serão passados para o Template. Ele não é obrigatório e caso algum valor de input definido no Template não seja informado, a pergunta é feita para o usuário.
+- **plugins**: Lista de objetos que indicam os Plugins que serão aplicados.
+  - **plugin**: Plugin a ser aplicado no formato **`nome-stack/nome-plugin`**.
+  - **inputs**: Objeto com os valores dos inputs que serão passados para o Plugin. Não é obrigatório e caso algum valor de input definido no Plugin não seja informado, a pergunta é feita para o usuário.
+
+### **Passo 3. Adicionar o arquivo no Git**
+Siga os passos abaixo:
+1. Adicione o arquivo **`yaml`** do Stackfile no Git e faça o push da Stack;
+
+2. Logo depois o seu Stackfile será publicado.
+
+
+Veja abaixo o exemplo do layout de um repositório com Stackfiles:
+```
+/stack-python
+  stack.yaml
+  /python-app-template/
+    template.yaml
+    /templates/
+        ...
+  /flask-api-plugin/
+    plugin.yaml
+    /templates/
+        ...
+  /zappa-deploy-plugin/
+    plugin.yaml
+    /templates/
+        ...
+  /stackfiles/
+    default.yaml
+    flask-serverless-api.yaml
+```
+
+## **Como utilizar os Stackfiles?**
+
+Os Stackfiles podem ser utilizados com os comandos 
+- [**`stk create app`**]({{< ref path="/docs/References/Commands List/stk-create-app.md" >}})
+- [**`stk create env`**]({{< ref path="/docs/References/Commands List/stk-create-env.md" >}}) 
+
+Para Stackfiles incluídos na própria Stack use a sintaxe:
+
+```
+stk create app nome-app --stackfile <nome-stack>/<nome-stackfile>
+```
+
+
+- Quando você utilizar o Stackfile, o Template e o Plugin já definidos, o app será aplicado com as mesmas definições.
+
+A mesma lógica pode ser usada no [**`stk create env`**]({{< ref path="/docs/References/Commands List/stk-create-env.md" >}}) para aplicar Stackfiles do tipo **`env`**.
+
+<alert color="secondary">
+O nome do Stackfile é opcional e pode ser omitido. Neste caso é usado o Stackfile default da Stack, representado pelo arquivo **`default.yaml`**. 
+</alert>
+
+
+#### Exemplo de aplicação de um Stackfile default:
+
+```
+stk create env nome-env --stackfile <nome-stack>
+```
+
+É possível utilizar um Stackfile customizado, ou seja, que não está dentro da pasta Stackfiles de uma Stack. Para isso você deve informar o caminho para arquivo **`yaml`** da especificação.
+
+#### Exemplo de aplicação de um Stackfile customizado:
+```
+stk create app nome-app --stackfile /home/user/custom-stackfile.yaml
+```

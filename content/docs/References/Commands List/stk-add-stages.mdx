@@ -1,0 +1,31 @@
+---
+title: stk add stages
+weight: 25
+description: Nesta seção, você encontra mais informações sobre o comando 'stk add stages'.
+---
+
+
+O comando **`stk add stages`** adiciona novos arquivos de configuração de JSONs para os estágios (stages) do diretório de uma stack que foi criada com o comando **`stk create app`** ou **`stk create env`**.
+
+### **Como funciona?**
+Rode o comando **`stk add stages`** dentro da pasta da stack criada (ambiente ou aplicação) e preencha os seguintes argumentos:
+
+- `<stage-name>:<aws-account-number>:<aws-region>`
+
+
+### **Parâmetros**
+Confira a opção disponível no comando:
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `STAGES` | Define os arquivos de configuração dos novos estágios para serem adicionados na aplicação/ambiente. |
+
+### **Exemplo**
+
+1. Você pode adicionar vários estágios (stages) de uma vez, mas separe os valores com vírgula. Veja um exemplo da adição dos stages preprod na stack:
+```
+stk add stages preprod:12345:us-east-1,prod:54321:us-east-1
+```
+Veja abaixo:
+![](/v3.0.0/stkgifs/stk-add-stages.gif)
+ 

@@ -1,0 +1,24 @@
+---
+title: 3.6.0
+weight: 99
+description: >-
+  Nesta seção, você encontra as Release Notes da versão 3.6.0 do STK CLI.
+---
+
+# **O que há de novo?**  
+
+A nova versão traz a possibilidade de aplicar plugins em projetos que originalmente não foram criados pelo StackSpot. Dessa forma, é possível se beneficiar de plugins de uma stack mesmo para projetos legados.
+
+## **Features**
+
+- Nova capacidade para aplicar plugins em projetos sem template StackSpot (projeto legado). Ao aplicar um plugin de uma stack em um projeto que não possui o arquivo **`stk.yaml`**, a pessoa usuária é informada e deve decidir em seguir ou não com a aplicação do plugin em seu projeto.
+- Extração da métrica **`STK_CHANNEL`**, para identificar o canal onde o CLI foi usado.
+
+## **Mudanças**
+
+- Atualização do comando [**`stk upgrade`**]({{< ref path="/docs/References/Commands List/stk-upgrade.md" >}}) para informar a página de release notes na documentação.
+- Adição de placeholders para os campos padrões dos inputs do STK CLI para facilitar a edição.
+
+## **Resolução de problemas (Bug Fixes)**
+
+- Ajuste na mensagem retornada no terminal ao tratar comandos interrompidos pela pessoa usuária. Agora, ao tratar uma interrupção uma mensagem mais amigável é exibida.

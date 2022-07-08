@@ -1,0 +1,48 @@
+---
+title: stk import stack
+weight: 8
+description: Nesta seção, você encontra mais informações sobre o comando 'stk import stack'.
+---
+
+O comando **`stk import stack`** é responsável por adicionar uma stack ao seu projeto. 
+
+### **Como funciona?**
+Quando você roda o comando, tanto os templates quanto os plugins da stack criada são disponibilizados para serem usados nos comandos **`stk create app`**, **`stk create env`** e **`stk apply plugin`**.
+
+<alert color="secondary">
+Se você importou uma stack de um repositório privado ou interno, você precisa re-autenticar o Git para todos os plugins da sua stack.
+
+Você pode configurar o Git para armazenar sua senha com o comando abaixo e deixar isso automático.
+
+ `git config --global credential.helper store`
+
+Para mais informações, acesse a [**documentação do Git**](https://git-scm.com/book/pt-br/v2/Git-Tools-Credential-Storage).
+</alert>
+
+
+### **Parâmetros**
+Confira a opção disponível no comando:
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `STACK_URL` | Informa a URL do repositório Git de uma stack. |
+
+
+### **Exemplo**
+Veja um exemplo abaixo:
+
+1. Adiciona os plugins e templates publicados na stack para o uso da CLI:
+```
+stk import stack [URL do git]
+```
+
+Veja um exemplo abaixo: 
+
+![](/v3.0.0/stkgifs/stk-import-stack.gif)
+
+
+### **Veja Também**
+- [<ins>**stk create stack**</ins>]({{< ref path="/stk-create-stack.md" >}})
+- [<ins>**stk update stack**</ins>]({{< ref path="/stk-update-stack.md" >}})
+- [<ins>**stk delete stack**</ins>]({{< ref path="/stk-delete-stack.md" >}})
+- [<ins>**stk list stack**</ins>]({{< ref path="/stk-list-stack.md" >}})

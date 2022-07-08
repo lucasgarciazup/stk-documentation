@@ -1,0 +1,27 @@
+---
+title: 3.3.0
+weight: 102
+description: >-
+  Nesta seção, você encontra as Release Notes da versão 3.3.0 do STK CLI.
+---
+
+# **O que há de novo?**
+A nova versão traz a remoção do parâmetro **`-p`** na deleção de plugins e templates de uma Stack em desenvolvimento.  
+
+## **Mudanças**  
+- Melhoria quando você realiza o upgrade da versão que permite a reinstalação dos pacotes PKG, MSI e DEB;    
+- Ao receber a mensagem que um plugin foi aplicado, você consegue ver o nome desse plugin;    
+- Geração automática de `.gitignore` ao criar repositórios Git;   
+- Remoção da opção **`--repo-path`** do comando **`stk delete`**.  
+
+## **Resolução de problemas (Bug Fixes)**  
+- Correção do timeout de autoproxy;  
+- Tratamento de exceção ao utilizar um **`stackfile`** inexistente;  
+- Tratamento de exceção do "cancelar o processo" durante a importação de uma Stack;  
+- Correção de erro de encoding nos inputs de templates e plugins. 
+- Ajuste de encoding no Windows no retorno de comandos de hooks;  
+- Ajuste de encoding no comando [**`stk list stackfile`**]({{< ref path="/docs/References/Commands List/stk-list-stackfile.md" >}});
+- Correção do erro no autocomplete quando há uma versão nova disponível para download;  
+- Correção do comando **`version`**, verifica a última versão desconsiderando o cache diário; 
+
+

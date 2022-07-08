@@ -1,0 +1,77 @@
+---
+title: stk add plugin
+weight: 17
+description: Nesta seção, você encontra mais informações sobre o comando 'stk add plugin'.
+---
+
+O comando **`stk add plugin`** é utilizado para adicionar plugins às stack já criadas pelo comando **`stk create stack`**.
+
+### **Como funciona?**
+O comando sempre deve ser executado dentro de uma pasta criada pelo comando **`stk create stack`**. Ele pode receber como parâmetro a url de um repositório Git de um plugin ou um caminho para uma pasta de um plugin criado pelo comando **`stk create plugin`**.
+
+Ao usar uma URL de um repositório Git, o plugin será adicionado à stack como um submódulo da stack, ou seja, o plugin possui um repositório git próprio. Neste caso, um só plugin pode ser adicionado em mais de uma stack e as atualizações são feitas no repositório do plugin. Estas atualizações são refletidas automaticamente em todas as stacks onde o plugin foi adicionado.
+
+Ao usar um caminho para uma pasta de um plugin, o código fonte do plugin é copiado para dentro do repositório da stack e passa a fazer parte dela como se tivesse sido criado diretamente na pasta da stack com o comando **`stk create plugin`**. Usando esta opção não há como refletir a atualização do plugin em mais de uma stack. 
+
+> Utilize esta opção caso queira converter um plugin que foi criado como um submódulo para um plugin que não será compartilhado entre stacks. 
+
+O usuário deve rodar os seguintes comandos dentro da pasta da stack:
+- **`stk add plugin <plugin-repo-url> ou <path-para-pasta-do-plugin>`** para cada plugin que você quer adicionar a stack.
+- **`git push -u origin main`** para atualizar o repositório da stack remotamente após adicionar um plugin.
+
+### **Parâmetros**
+Confira a opção disponível no comando:
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `REPO_URL_OR_PATH` | Define a URL do repositório Git ou o caminho para a pasta do plugin a ser adicionado à stack. |
+
+
+### **Exemplo**
+Depois de criar sua stack, você pode adicionar os plugins:
+
+1. Vá para a pasta da stack que você criou, no exemplo abaixo o nome é 'my-stack-demo':
+```
+cd my-stack-demo
+```
+
+2. Depois rode:
+```
+stk add plugin [URL do seu repositório ou caminho para a pasta do plugin]
+```
+
+3. O terminal retorna:
+```
+> Verifying "[URL do seu repositório]" plugin git repository...
+- Plugin repository is valid.
+> Adding "[URL do seu repositório]" plugin to stack...
+- "[URL do seu repositório]" added to stack.
+
+Now you can execute 'git push' to publish the plugin added to remote stack repository.
+```
+
+4. Agora, execute:
+```
+ls
+```
+
+5. O terminal retorna:
+```
+stack.yaml
+/nome-repositorio-plugin
+```
+
+6. Agora, execute para atualizar o repositório remoto da stack com o novo plugin:
+```
+git push
+```
+
+Veja um exemplo abaixo:
+![](/v3.0.0/stkgifs/stk-add-plugin.gif)
+
+
+### Veja Também
+- [<ins>**stk create plugin**</ins>]({{< ref path="/stk-create-plugin.md" >}})
+- [<ins>**stk list plugin**</ins>]({{< ref path="/stk-list-plugin.md" >}})
+- [<ins>**stk apply plugin**</ins>]({{< ref path="/stk-apply-plugin.md" >}})
+- [<ins>**stk delete plugin**</ins>]({{< ref path="/stk-delete-plugin.md" >}})

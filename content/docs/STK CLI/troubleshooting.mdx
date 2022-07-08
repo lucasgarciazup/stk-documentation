@@ -1,0 +1,75 @@
+---
+title: Troubleshooting
+weight: 6
+description: 'Nesta seção, você encontra soluções para possíveis problemas no STK CLI.'
+---
+
+
+### **Problema**: Erro nos comandos list plugin e list template no Windows
+
+Os comandos **`stk list plugin`** e **`stk list template`** criam um diretório **`.template`** na pasta onde são executados. Veja o exemplo abaixo:   
+
+```
+$ stk list plugin
+> no plugins found
+Traceback (most recent call last):
+  File "cli.py", line 78, in <module>
+  File "cli.py", line 74, in main
+  File "cli.py", line 67, in main
+  File "click\core.py", line 1128, in __call__
+  File "click\core.py", line 1053, in main
+  File "click\core.py", line 1659, in invoke
+  File "click\core.py", line 1628, in _process_result
+  File "click\core.py", line 754, in invoke
+  File "click\decorators.py", line 26, in new_func
+  File "cli.py", line 62, in process_result
+  File "metrics\send.py", line 23, in decorator
+  File "plugin\list.py", line 46, in list_plugin
+  File "plugin\list.py", line 66, in _get_plugins_by_type
+  File "plugin\list.py", line 101, in _should_add_plugin
+  File "plugin\list.py", line 114, in _is_env_or_app_type
+KeyError: 'types'
+[1576] Failed to execute script 'cli' due to unhandled exception!
+```
+
+### **Possível Causa**   
+É possível que tenha ficado algum cache ou arquivo da versão anterior que foi desinstalada através de "Adicionar ou remover programas". Por esse motivo, o novo instalador pode não ter limpado ou atualizado todos os arquivos. 
+
+### **Solução**  
+Os plugins só voltam a ser listados quando o **`update`** é forçado com as flags **`--clean`** e **`--force-update`**. Rode no seu terminal:
+
+```
+stk init --clean --force-update
+```
+__________________________________________________________________________
+
+### **Problema:** Erro de permissão do Git quando eu rodo alguns dos comandos do STK CLI.    
+
+### **Possível Causa**   
+Os usuários possuem permissão nos repositórios Git, mas em alguns repositórios separados isso não acontece.  
+
+### **Solução**  
+Verique a suas permissões do Git antes de rodar o comando, entre em contato com o administrador do repositório. Para mais informações, [<ins>**acesse a documentação do GitHub**</ins>](https://docs.github.com/pt/get-started/learning-about-github/access-permissions-on-github).
+
+__________________________________________________________________________
+### **Problema:** Acabei de configurar o STK CLI e aparece o erro `zsh: permission denied: stk`  
+
+### **Possível Causa**   
+É um problema específico do MacOS com a VPN privada.
+
+### **Solução**  
+Rode o comando abaixo no seu terminal:
+```
+chsh -s /bin/zsh
+```
+
+_______________________________________________________________________________
+### **Problema:** Erro relacionado ao **`xcrun`** 
+Exemplo: 
+`xcrun: error: invalid active developer path`  
+
+### **Possível Causa**   
+É um problema de atualização do MacOS.
+
+### **Solução**  
+Atualize o **Xcode Developer Tool**: **`xcode-select --install`** e tente novamente.

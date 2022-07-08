@@ -1,0 +1,44 @@
+---
+title: Criar um Projeto
+weight: 5
+description: >-
+  Nesta seção, você encontra detalhes para criar um projeto a partir de um Template.
+---
+
+---
+
+## **O que é um Template?**
+
+É um modelo que você aplica para construir o seu projeto. O template é formado por um conjunto de variáveis que, quando são preenchidas, produzem a estrutura do projeto que você vai construir. Essas variáveis são: **`linguagem de programação`**, **`build system`**, **`frameworks`**, **`empacotamento`** e outros componentes estruturais usados para construir uma Stack.
+
+O Template deve definir todas as capacidades básicas e padronizadas de uma stack, que depois podem ser estendidas por meio de Plugins.
+
+Para mais informações sobre Templates, leia o [**<ins>Glossário</ins>**]({{< ref path="/glossary.md#template" >}}).
+
+## **Como criar um projeto a partir de um Template?**
+
+É necessário já ter importado uma Stack. Para mais informações, leia a página [**<ins>Importar uma Stack</ins>**]({{< ref path="/import-stack.md" >}}).
+
+### **Passo 1. Ver Templates disponíveis**
+Para ver quais Templates da stack estão disponíveis para usar, rode o comando:
+```
+stk list template
+```
+### **Passo 2. Criar o projeto**
+Escolha o Template que você quer usar, e rode o comando:
+```
+stk create app <NOME-DO-PROJETO> -t <NOME-DA-STACK/NOME-DO-TEMPLATE>
+```
+### **Passo 3. Confirme a criação do seu projeto**
+Para confirmar que a criação do seu projeto foi bem sucedida, rode o comando:
+```
+cd <NOME-DO-SEU-PROJETO>
+```
+Você poderá ver o conteúdo da pasta do projeto que você acabou de criar. 
+
+É **opcional**, mas se você deseja ver a hierarquia de pastas e arquivos, rode o comando abaixo:
+```
+tree -a
+```
+### **Próximos Passos**
+Após criar o seu projeto a partir de um Template, você pode expandir as funcionalidades dele adicionando Plugins. Para mais informações, leia a página [**<ins>Aplicar um Plugin</ins>**]({{< ref path="/apply-plugin.md" >}}).

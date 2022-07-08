@@ -1,0 +1,45 @@
+---
+title: Aplicar um Plugin
+weight: 6
+description: >-
+  Nesta seção, você encontra detalhes de como aplicar um plugin ao seu projeto.
+---
+
+---
+
+## **O que é um Plugin?**
+
+São extensões de uma Stack que permitem a agregação de novas capacidades ao template base por meio da inclusão de código fonte, importação de bibliotecas e até mesmo a execução de comandos e operações complexas para adicionar capacidades a Stack.
+
+## **Como aplicar um Plugin a um projeto?**
+Para aplicar um Plugin é necessário que você tenha importado uma Stack, e criado um projeto. Para mais informações de como fazer isso, leia os guias abaixo:
+- [**<ins>Importar uma Stack</ins>**]({{< ref path="/import-stack.md" >}})
+- [**<ins>Criar um Projeto</ins>**]({{< ref path="/create-project.md" >}})
+
+### **Passo 1. Ver Plugins disponíveis**
+Para ver quais Plugins da Stack estão disponíveis para usar no seu projeto, rode o seguinte comando:
+```
+stk list plugin
+```
+### **Passo 2. Aplicar o Plugin**
+Escolha os Plugins que você quer usar, e dentro do diretório do seu projeto, rode comando:
+```
+stk apply plugin <NOME-DA-STACK/NOME-DO-PLUGIN>
+```
+
+- Se você aplicar um Plugin que está na Stack que você já criou usando o comando [<ins>**stk create app**</ins>]({{< ref path="/stk-create-app.md" >}}), não é necessário colocar o nome da Stack no comando. Caso seja um Plugin de outra Stack, você precisa seguir o padrão do exemplo acima: <NOME-DA-STACK/NOME-DO-PLUGIN>.
+
+>O autocomplete está disponível se você estiver usando **bash** ou **zsh**.
+
+<alert color="secondary">
+É possível aplicar um Plugin a um projeto criado fora da StackSpot. O STK CLI informa quando o projeto não é da StackSpot, e pede sua autorização para aplicar o Plugin.
+</alert>
+
+### **Passo 3. Confirmar se o Plugin foi aplicado**
+Para confirmar se o Plugin foi aplicado corretamente, vá para o diretório do seu projeto e rode o comando:
+```
+tree -a
+```
+
+ ### **Próximos Passos**
+ Estes foram os principais passos para criar um projeto. É possível utilizar Stackfiles para criar o seu projeto. Para entender melhor como usar um Stackfile leia a página [**<ins>Usar um Stackfile</ins>**]({{< ref path="/use-stackfile.md" >}}).

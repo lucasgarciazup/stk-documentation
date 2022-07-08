@@ -1,0 +1,36 @@
+---
+title: stk init
+weight: 1
+description: Nesta seção, você encontra mais informações do comando 'stk init'.
+---
+
+
+O comando **`stk  init`** é utilizado na inicialização e configuração da ferramenta STK CLI no seu ambiente.
+
+### **Como funciona?**
+Ele mostra uma lista de todos os parâmetros disponíveis, além de permitir setar o proxy e desabilitar os certificados.
+
+Os usuários do com a VPN privada devem setar os parâmetros manualmente.
+
+
+### **Parâmetros**
+Confira as opções disponíveis no comando:
+
+| **Parâmetros** | **Descrição** |
+| :--- | :--- |
+|`-f ou --force-update` | Força a atualização dos catálagos de plugin antes da atualização autómatica, que ocorre 24 horas depois da última atualização. |
+| `-o ou –plugins-offline` | Os catálagos das stack padrão trabalham no modo offline. É usado quando os usuários do CLI não possuem permissão para clonar repositórios do GitHub.  |
+| `-k ou --disable-ssl-verify` |Desabilita a verificação de certificados SSL. É usado quando o proxy nos ambientes de VPN privada retornam certificados inválidos para o Github.|
+| `-p ou --proxy <host>:<port>` |Configura um proxy para realizar as conexões HTTP. |
+| `-c ou --clean` |Limpa as configurações feitas anteriormente. É usada para remover configurações padrão. |
+| `-e ou --proxy-exclusions <url-proxy1>,<url-proxy-2>` | Define a lista de URLs, separadas por vírgula, que não devem se conectar via proxy configurado. |
+
+
+### **Exemplos**
+
+Veja um exemplo:
+**`stk init –proxy proxy.mycorp:8080 –disable-ssl-verify –clean`**
+
+Execução do comando:
+
+![](/v3.0.0/stkgifs/stk-init.gif)

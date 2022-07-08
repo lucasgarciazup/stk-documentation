@@ -1,0 +1,37 @@
+---
+title: Aplicar plugin em projeto legado
+weight: 10
+description: >-
+  Nesta seção, você encontra detalhes de como aplicar um plugin em um projeto legado.
+---
+
+---
+
+
+É possível utilizar um plugin em um projeto que não tenha sido criado por meio de uma Stack da StackSpot. Estes projetos recebem o nome de projetos legados.
+
+## **Requisitos**
+É necessário importar uma Stack que tenha pelo menos um Plugin disponível para uso.
+
+## **Passo 1. Aplicar o Plugin**
+
+Aplicar o Plugin no projeto: 
+
+```shell
+stk apply plugin <NOME-DA-STACK/NOME-DO-PLUGIN>
+```
+
+## **Passo 2. Confirmar o uso**
+
+O STK CLI informa os casos em que o projeto não foi criado usando o StackSpot. Logo após pedirá a sua aprovação para você aplicar o Plugin:
+
+```shell
+~ stk apply plugin <stack>/<plugin>
+? The current folder doesn't seem to be the root of Stack Spot project. Do you still want to proceed applying the plugin? (Y/n)
+```
+
+## **Passo 3. Inserir inputs**
+
+Ao confirmar o uso do plugin, o STK CLI pede os inputs específicos do plugin antes de aplicá-lo ao projeto.
+Logo depois cria o arquivo **`stk.yaml`** na pasta do seu projeto.
+

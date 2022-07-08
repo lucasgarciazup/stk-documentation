@@ -1,0 +1,188 @@
+---
+title: Criar uma Stack
+weight: 2
+description: >-
+  Nesta seção, você encontra detalhes de como criar e publicar uma Stack com Plugins, Templates e Stackfiles.
+---
+
+### **Antes de você começar**
+
+Uma **Stack** é um conjunto de Plugins, Templates, e Stackfiles que, quando usados em conjunto, tornam possível criar uma aplicação, projeto ou funcionalidade. 
+
+Para criar a sua Stack, confira os seguintes itens:
+
+- [<ins>**Verifique se o STK CLI está atualizado**</ins>]({{< ref path="/stk-upgrade.md" >}})
+- <a href="https://git-scm.com/downloads" target="_blank"><strong><ins>Verifique se o Git está atualizado</ins></strong></a>
+- Crie um repositório dedicado para publicar a sua Stack. Você pode criá-lo em qualquer plataforma de hospedagem de código Git (como GitHub ou GitLab) e pode ser público ou privado.
+
+### **Comandos utilizados na criação de uma Stack**
+
+<tabs name="T0">
+<tab title="1. Criar a Stack vazia" >
+
+```
+stk create stack
+```
+
+</tab>
+
+<tab title="2. Criar o Template" >
+
+```
+stk create template
+```
+
+</tab>
+
+<tab title="3. Criar o Plugin" >
+
+```
+stk create plugin
+```
+
+</tab>
+
+<tab title="4. Definir o Stackfile" >
+
+```
+stk create stackfile
+```
+
+</tab>
+
+<tab title="5. Importar uma Stack" >
+
+```
+stk import stack
+```
+
+</tab>
+
+</tabs>
+
+### **Passo 1. Criar uma Stack vazia**    
+Antes de criar um Template ou Plugin, é preciso criar uma Stack. Para criá-la, execute o comando abaixo:  
+
+```
+stk create stack <nome-da-stack-que-será-criada>
+```
+
+A primeira pergunta que o terminal fará é sobre a descrição (Description) que você quer dar à Stack.  
+
+>É opcional associar a URL de um repositório na criação da Stack. Para isso, no lugar do nome, execute o comando com o argumento `-R` ou `--remote`. Veja o exemplo: **`stk create stack --remote <url-repositório-git>`**
+
+### **Passo 2. Conferir se a Stack foi criada**   
+Entre na pasta da stack que foi criada e execute o comando abaixo:  
+
+```
+cd <nome-da-stack-criada>
+```
+
+A Stack foi criada se um repositório Git foi inicializado e nele está o arquivo **`stack.yaml`** que descreve os dados da Stack, como descrição, nome etc.
+
+### **Passo 3. Criar um Template**  
+Depois de criar a Stack, entre na pasta dela e execute o comando abaixo:  
+
+<alert color="secondary">
+
+Caso deseje compartilhar os Templates e Plugins com outras Stacks, leia os guias:
+- [<ins>**Criar Templates**</ins>]({{< ref path="/docs/Creators Guide/howto-create-template.md" >}})
+- [<ins>**Criar Plugins**</ins>]({{< ref path="/docs/Creators Guide/howto-create-plugin.md" >}}). 
+
+</alert>
+
+
+```
+stk create template <nome-do-template-que-será-criado>
+```
+
+Na criação do Template, você pode informar alguns argumentos para o comando. Os argumentos devem ser inseridos antes do nome do Template no campo opções **`stk create template <opções> <nome-do-template>`**. As opções disponíveis são:  
+
+**Descrição**  
+**`-d`** ou **`--description`**  **"Texto"**  
+O texto que descreve o Template e seu propósito. 
+___
+**Remote**  
+**`-R`** ou **`--remote`** `<git-remote-url>`  
+Configura uma url do Git como origem do repositório do Template. É obrigatório quando o nome do Template não é preenchido, quando preenchido, o nome do Template será o nome do repositório Git.  
+___
+**Deploy**  
+**`-D`** ou **`--deploy`** 
+Adiciona a seção `lifecycle` no arquivo plugin.yaml. Nessa seção é possível definir diversas ações e executá-las com o comando `stk deploy`.
+___  
+**Tipos**  
+**`-t`** ou **`--types`** **Texto**  
+Os tipos definem onde o plugin pode ser aplicado. Os valores aceitos são **`app-template`** e **`env-template`**. Para definir mais de um tipo, use uma vírgula para separar os valores e não use espaço entre eles.
+___  
+
+Se nenhum destes argumentos forem passados, o comando fará algumas perguntas, como o **tipo do template** que você quer criar: `app-template` (aplicação), `env-template` (ambiente) ou ambos. 
+
+- Caso você selecione o tipo `app-template`, o Template poderá ser usado no comando `stk create app`.  
+- Se você selecionar o tipo `env-template`, o Template poderá ser usado no comando `stk create env`.  
+- Se os dois forem selecionados, o Template poderá ser usado nos dois comandos: `stk create app` e `stk create env`.  
+
+Após criar o Template, dentro da sua Stack é criada uma pasta com o nome do Template e dentro dessa pasta, também são geradas a pasta **`templates`** e o arquivo **`template.yaml`**.  
+
+Na pasta **`templates`**, você deve criar o código fonte do Template. Exemplo: Um Template HTML pode ser composto por um arquivo **`index.html`**. Veja mais sobre Templates na seção [**Criar um template**]({{< ref path="/howto-create-template.md" >}}).  
+
+>Você pode criar diversos arquivos na pasta **`templates`** usando diferentes linguagens de programação, e todos os arquivos suportam expressões [**`Jinja`**](https://jinja.palletsprojects.com/en/3.1.x/) para ações como interpolação de valores ou condicionais, além da possibilidade de nomear pastas com expressões Jinja.
+
+Quando o Template for definido, é preciso indicar as entradas que serão perguntadas, como por exemplo:
+
+- Nome;  
+- Descrição do Template;  
+- Tipo (que já foi definido na criação do Template);  
+- O **`project-name`**: onde é definido o nome dado no comando **`stk create app`**. 
+
+> Para definir e encontrar os **`inputs`** e os **`computed-inputs`**, acesse a [**seção de Arquivos.yaml**]({{< ref path="/yaml.md" >}})
+
+### **Passo 4: Criar um Plugin**  
+Para criar um Plugin, ainda dentro da pasta da Stack execute o comando abaixo:
+
+```
+stk create plugin <nome-do-plugin-a-ser-criado>
+```
+
+O terminal perguntará se o Plugin se aplica a um Template de **app** ou de **env**. Neste caso, se Template foi criado em app, o Plugin deverá também ser criado em app. Caso tenha sido criado em env, o Plugin deverá ser criado em env. Também é possível aplicar os dois ao mesmo tempo.
+
+A descrição que o Plugin terá será pedida pelo terminal e a estrutura do Plugin será criada.
+
+> Dentro da pasta da Stack haverá as pastas do Template e Plugin criados. Na pasta do Plugin você encontra o arquivo `plugin.yaml`, nesse arquivo é possível definir os inputs e o comportamento do Plugin.
+
+### **Passo 5: Definir os Stackfiles**  
+
+Dentro da sua Stack, por padrão é gerada a pasta **stackfiles** e dentro dela o Stackfile `default.yaml`. Para criar um novo Stackfile, entre na pasta **Stackfiles** e execute o comando abaixo:
+
+```
+stk create stackfile <nome-do-stackfile>
+```
+
+Depois que o [<ins>**stackfile**</ins>]({{< ref path="/docs/References/Commands List/stk-create-stackfile.md" >}}) foi criado, é possível definir o tipo dele e predefinir um input. 
+
+### **Passo 6: Publicar e importar a Stack**  
+
+Após todos os passos, sua Stack está pronta para ser publicada. Para isso, entre na pasta da Stack e em seguida:  
+1. Adicione um repositório para a sua Stack caso não tenha feito isso no [**passo 1**](#passo-1-criar-uma-stack-vazia). Exemplo:   
+**`git remote add origin <url-do-seu-repositório>`**  
+
+2. Adicione os arquivos e faça o commit. Exemplo:   
+**`git add --all`** e **`git commit --message <mensagem-commit>`**  
+
+3. Publique a sua Stack. Exemplo:   
+**`git push`**.  
+
+Depois de ter publicado a Stack em um repositório, é possível importar e utilizar a Stack dentro do STK CLI. Para importar a Stack, execute o comando abaixo:  
+
+```
+stk import stack <url-do-seu-repositório>
+```
+
+<alert color="success" >
+Agora, é possível usar tanto o Template, quanto o Plugin e o Stackfile criados anteriormente. Também é possível criar apps (aplicações) e aplicar Plugins. 
+</alert>
+
+## **Leia também**
+Aprenda sobre os comandos relacionados à criação de uma Stack:
+- Adicione uma Stack ao seu projeto com [<ins>**`stk import stack`**</ins>]({{< ref path="/docs/References/Commands List/stk-import-stack.md" >}}).
+- Liste as Stacks disponíveis com [<ins>**`stk list stack`**</ins>]({{< ref path="/docs/References/Commands List/stk-list-stack.md" >}}).
+- Atualize todas as Stacks disponíveis com [<ins>**`stk update stack`**</ins>]({{< ref path="/docs/References/Commands List/stk-update-stack.md" >}}).  

@@ -1,0 +1,58 @@
+---
+title: FAQ
+weight: 100
+toc_hide: true
+description: >-
+  Nesta seção, você encontra perguntas e respostas mais frequentes da StackSpot.
+---
+
+### **1. O que é STK CLI?**
+O CLI é uma ferramenta que permite a execução da jornada de um usuário que consome Stacks e dos criadores delas. O STK CLI é aberto à possibilidade de cada organização ter estúdios próprios com conjunto de Templates e Plugins de acordo com a necessidade de cada um. 
+
+### **2. Quem são os estúdios?**
+Os [<ins>**estúdios**</ins>](/glossary) podem ser organizações ou alguma pessoa que precisa criar Stacks com o objetivo de facilitar o desenvolvimento de software. 
+
+### **3. O que consigo fazer usando o STK CLI?** 
+Você consegue importar Stacks publicadas e iniciar projetos baseados nos Templates disponíveis em cada uma delas. Esses projetos podem ser estendidos com os Plugins que adicionam novas funcionalidades e recursos para o seu projeto. 
+
+### **4. Qual autenticação o STK CLI utiliza?**
+O STK CLI utiliza a autenticação configurada no Git da sua máquina e pode também perguntar as credenciais de acesso, caso o seu repositório seja privado e a URL seja HTTP. 
+
+
+### **5. Qual é a senha que o STK CLI solicita no console?**
+A senha de acesso é o PAT - Personal Authentication Token. Para mais informações, [**acesse a documentação do GitHub**](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+
+### **6. O STK CLI possui comandos para criar repositórios?**
+Não, os [**estúdios**](/glossary) são responsáveis por definir o provedor do Git e criar repositórios vazios para seus Templates, Stacks e Plugins.
+
+### **7. O que uma Stack precisa ter?**
+Uma [<ins>**stack**</ins>](/glossary) é composta por um Template base e que pode ser incrementado com Plugins, o objetivo é resolver algum problema específico. 
+
+### **8. Onde as Stacks são publicadas?**
+As [<ins>**stacks**</ins>](/glossary) são publicadas pelos estúdios em repositórios do GitHub.
+
+### **9. Como os Templates são versionados?**
+Os Templates são versionados em um repositório no GitHub. É necessário utilizar o versionamento semântico. Para mais informações [<ins>**acesse a documentação**</ins>](https://semver.org/). 
+
+### **10. Onde o STK CLI mantém os templates?**
+O CLI mantém os Templates na última tag publicada ou na branch main quando não houver tags.
+
+### **11. Por que criar um Plugin env é diferente de criar um Plugin app?**
+Porque a criação do o env define clusters, banco de dados e outros recursos que podem ser compartilhados por vários apps. Quando você criar uma [<ins>**aplicação (app)**</ins>](/docs/References/Commands List/stk-create-app), ele referencia a um [<ins>**ambiente (env)**</ins>](/docs/References/Commands List/stk-create-env). 
+
+### **12. Eu preciso criar um Plugin env antes do app?**
+Não. Não é obrigatório criar um env antes de criar um app.
+
+### **13. Qual a diferença entre um Plugin base e um ‘normal’?**
+O Plugin base inicia um projeto com comandos create app e create env. O Plugin normal adiciona uma funcionalidade ao Plugin base. 
+
+### **14. Existe alguma diferença na criação de um Plugin base e um normal?**
+Não. Utilize o comando [<ins>**`stk create plugin`**</ins>](/docs/References/Commands List/stk-create-plugin.md" >}}) para criar e gerar um Template para esse Plugin. Se ele é um Plugin base ou não, você consegue ver no descritor onde o Template foi gerado.
+
+### **15. Qual a relação entre os Plugins env e app?**
+A infraestrutura compartilhada, ou seja, um env (environment/ambiente) define o conjunto dos recursos compartilhados por vários [<ins>**apps applications/aplicações**</ins>](/glossary).
+
+### **Veja também**
+- [<ins>**Glossário StackSpot**</ins>](/glossary).
+- [<ins>**STK CLI**</ins>](/docs/STK CLI/overview).
+- [<ins>**Comandos STK CLI**</ins>](/docs/References/Commands List" >}}).

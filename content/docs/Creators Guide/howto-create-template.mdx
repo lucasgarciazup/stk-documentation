@@ -1,0 +1,144 @@
+---
+title: Criar um Template
+weight: 3
+description: >-
+  Nesta seção, você encontra detalhes de como criar um Template.
+---
+
+## **Antes de você começar**
+
+O **Template** é responsável por definir a estrutura base de um projeto, sendo o ponto de partida para a criação de um ambiente ou aplicação.
+
+É o Template que define aspectos básicos, como linguagem de programação, sistema de build, empacotamento, frameworks e componentes estruturais.
+
+O que o CLI faz é criar uma estrutura ("um esqueleto") deste Template para que você possa editar e personalizar para, em seguida, publicar e compartilhar com outras pessoas.
+
+Para facilitar sua compreensão, acompanhe a evolução do diagrama abaixo, que será incrementado a partir da realização das próximas etapas de criação de Template.
+
+![](/v3.0.0/ptbr/guia_diagrama_inicial1.png)
+
+## **Comandos relacionados ao Template**
+<tabs name="T1">
+<tab title="1. Criar novos Templates" >
+```
+stk create template
+```
+</tab>
+<tab title="2. Adicionar Templates às stack já criadas" >
+```
+stk add template <template-repo-url> ou <path-para-pasta-do-template> 
+```
+</tab>
+<tab title="3. Listar Templates disponíveis" >
+```
+stk list template
+```
+</tab>
+
+<tab title="4. Remover Templates dentro de um projeto" >
+```
+stk delete template my-template
+```
+</tab>
+</tabs>
+
+## **Criar um Template**
+
+Existem duas formas de criar um Template:
+1. Criar o Template diretamente na pasta de Stack.
+2. Criar o Template local já atrelado a algum repositório.
+
+Este tutorial vai mostrar a segunda opção. Para mais detalhes da primeira forma, consulte a página [<ins>**`Criar uma Stack`**</ins>]({{< ref path="/docs/Creators Guide/howto-create-stack.md" >}})
+
+### **Passo 1. Criar um repositório vazio para armazenar o Template** 
+Crie um repositório que será a base para armazenar seu Template. Você pode criá-lo em qualquer plataforma de hospedagem de código Git (como GitHub ou GitLab) e pode ser público ou privado.
+
+Certifique-se de que você tem acesso ao repositório e suas credenciais já estão configuradas em sua máquina.
+
+### **Passo 2. Criar a estrutura do seu Template**  
+Rode o comando abaixo, utilizando a url do reposotiório criado no passo 1:  
+
+```
+stk create template --remote <url_do_repo>
+```
+O STK CLI realiza todas as configurações necessárias para usar o repositório passado como parâmetro, faltando apenas subir o código gerado no final da criação do Template.
+
+### **Passo 3. Fornecer as informações extras para criar o Template**  
+Forneça as informações para finalizar a criação do Template, por exemplo, qual tipo de Template e a sua descrição.
+
+- Qual o tipo de Template: **app-template**, **env-template** ou os dois.
+  - **app-template**: Define um componente de software responsável por implementar uma ou mais funcionalidades de negócio.
+  **Exemplos:** Um microsserviço, uma API, entre outros.
+  -  **env-template**: Define um conjunto de recursos e/ou configurações que podem ser utilizados por várias aplicações.
+  **Exemplos:** a criação de um runtime para containers como um cluster ECS ou EKS, a criação de um RDS que pode ser compartilhado entre várias aplicações ou mesmo a criação de recursos de rede compartilhados entre as várias aplicações da empresa como VPCs, subnets, entre outros.  
+
+<alert color="secondary">
+
+Você pode presumir que os componentes de software criados a partir dos templates do tipo **app-template** podem usar recursos de um ambiente criado a partir de um Template do tipo **env-template**.
+
+</alert>
+
+### **Passo 4. Confirmar se a estrutura do Template foi devidamente criada**  
+Verifique se o processo de criação rodou corretamente. O resultado esperado é uma pasta com o mesmo nome do repositório que foi passado como parâmetro para o comando.
+
+Esta pasta deverá ser composta por um arquivo **template.yaml** e uma pasta chamada **templates**, que contém um **README.md**. 
+A estrutura do arquivo **template.yaml** define informações sobre o Template e os seus dados de entrada.
+
+### **Por que esses inputs são necessários?**  
+Se você criar um Template para criação de aplicações Kotlin, por exemplo, e seja importante saber o **`groupId`** para gerar a estrutura de pastas automaticamente na sua aplicação.
+
+Na prática, existem configurações que podem ser personalizadas e, para isso, é necessário captar informações de quem vai usar o seu Template para criar aplicações.
+
+Para mais detalhes, veja a seção da [documentação sobre a **estrutura do `template.yaml`**]({{< ref path="/docs/Creators Guide/Configuration/yaml.md" >}}).
+
+### **Passo 5. Personalizar o seu Template**  
+1. Edite o arquivo **template.yaml** adicionando um novo input chamado **group_id** e suas respectivas informações. Confira na imagem a seguir:
+![](/v3.0.0/ptbr/guia_estrutura_plugin_yaml_template.png)
+
+Você deve preencher essas informações quando criar uma aplicação baseada nesse Template.
+Para mais informações sobre a estrutura do **`yaml`**, [**veja a documentação.**](https://learnxinyminutes.com/docs/yaml/)
+
+2. Já o **project_name** é passado automaticamente.
+
+### **Passo 6. Testar a personalização**  
+Você pode testar o Template localmente antes de subir para um repositório. 
+
+Para isso, você vai usar o comando:   
+```
+stk create app <nome_da_aplicação> -–template-path <path_template_local>
+```
+
+O Template foi criado na sua máquina local, veja a imagem abaixo os dois tipos de Template **app-template** e **env-template**:
+
+![](/v3.0.0/ptbr/guia_diagrama_template_local1.png)
+
+### **Passo 7. Subir o Template para a sua plataforma de hospedagem**  
+O próximo passo é subir suas modificações para a plataforma de hospedagem para tornar seu Template acessível, visto que ele ainda está somente local na sua máquina.  
+
+Entre na pasta do template e execute:
+```
+git add .
+```
+```
+git commit -m “mensagem”
+```
+```
+git push origin main
+```
+### **Passo 8. Adicionar o Template a uma Stack.**
+Adicione o seu Template na Stack que você quiser. 
+
+- Entre na pasta da Stack:
+```
+cd <nome-da-stack>
+```
+- Use a URL do seu repositório e rode o comando:
+```
+stk add template <url-do-seu-repo-de-template>
+```
+Pronto, o Template foi adicionado na Stack! 
+
+Veja o exemplo abaixo, dois Templates indo para a plataforma de hospedagem, um **app-template** e outro **env-template**:
+
+![](/v3.0.0/ptbr/guia_diagrama_template_github1.png)
+

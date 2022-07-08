@@ -1,0 +1,32 @@
+---
+title: stk update env
+weight: 24
+description: Nesta seção, você encontra mais informações sobre o comando 'stk update env'.
+---
+
+
+O **`stk update env`** é responsável por atualizar os stages (estágios) do aplicativo (app) criado, baseado nos stages do env (ambiente).
+
+### **Como funciona?**
+Ele compara os stages da env adicionada no app, e se houve alguma adição de arquivos na env criada, o `stk update env` atualiza os stages do app.
+
+O comando funciona de duas formas:
+1. O usuário digita o comando `stk update env` dentro da pasta do app criado;
+2. O usuário digita o comando `stk update env –target /caminho/app` em qualquer pasta.
+  - Neste caso, o `--target` deve apontar para a pasta em que o app está.
+
+<alert color="warning" >
+Este comando não modifica o conteúdo dos arquivos que já foram criados. Ele só adiciona ou atualiza os novos arquivos no app.
+</alert>
+
+
+### **Exemplo**
+Veja um exemplo abaixo:
+
+1. Atualiza os stages de um app:
+```
+stk update env
+```
+
+### **Veja Também**
+- [<ins>**stk create env**</ins>]({{< ref path="/stk-create-env.md" >}})

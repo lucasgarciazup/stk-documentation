@@ -1,0 +1,40 @@
+---
+title: stk add template
+weight: 12
+description: Nesta seção, você encontra mais informações sobre o comando 'stk add template'.
+---
+
+O comando **`stk add template`** é utilizado para adicionar templates as stacks já criadas pelo comando **`stk create stack`**.
+
+### **Como funciona?**
+O comando sempre deve ser executado dentro de uma pasta criada pelo comando **`stk create stack`**. Ele pode receber como parâmetro a URL de um repositório Git de um plugin ou um caminho para uma pasta de um template criado pelo comando **`stk create template`**.
+
+Ao usar uma URL de um repositório Git, o template será adicionado à stack como um submódulo da stack, ou seja, ele terá um repositório Git próprio. Neste caso, um mesmo template pode ser adicionado em mais de uma stack e as atualizações são feitas no repositório do template. Elas serão refletidas automaticamente em todas as stacks onde o template foi adicionado.
+
+Ao usar um caminho para uma pasta de um template o código fonte do template é copiado para dentro do repositório da stack e passa a fazer parte da stack como se tivesse sido criado diretamente na pasta da stack com o comando **`stk create plugin`**. Usando esta opção não há como refletir a atualização do template em mais de uma stack. 
+
+> Utilize esta opção caso queira converter um template que foi criado como um submódulo para um template que não será compartilhado entre stacks. 
+
+O usuário deve rodar os seguintes comandos dentro da pasta da stack:
+- **`stk add template <template-repo-url> ou <path-para-pasta-do-template>`** para cada template que você precisa adicionar a stack.
+- **`push -u origin main`**
+
+### **Parâmetros**
+Confira a opção disponível no comando:
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `REPO_URL_OR_PATH` | Define a URL do repositório Git ou caminho para pasta do template a ser adicionado à stack. |
+
+
+### **Exemplo**
+Depois de criar a sua stack, você pode adicionar os templates, veja o exemplo abaixo: 
+
+
+![](/v3.0.0/stkgifs/stk-add-template.gif)
+
+
+### **Veja Também**
+- [<ins>**stk create template**</ins>]({{< ref path="/stk-create-template.md" >}})
+- [<ins>**stk delete template**</ins>]({{< ref path="/stk-delete-template.md" >}})
+- [<ins>**stk list template**</ins>]({{< ref path="/stk-list-template.md" >}})

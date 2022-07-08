@@ -1,0 +1,412 @@
+---
+title: Usar um Hook Declarativo
+weight: 6
+description: >-
+  Nesta seção, você encontra detalhes de como usar um hook declarativo.
+---
+
+
+## **O que são hooks declarativos?**
+
+Os **hooks declarativos** são uma forma de definir ações a serem executadas em momentos específicos da aplicação de um Template.
+
+A aplicação de um Template possui duas fases distintas:
+
+**Fase 1.** Perguntar ao usuário os parâmetros de entrada.  
+**Fase 2.** Interpolar os templates Jinja usando os valores informados para geração de arquivos.
+
+Você pode executar as ações definidas nos hooks declarativos:
+
+- Antes de inserir os parâmetros de entrada (***before-input***)
+- Antes de interpolar os templates Jinja para a geração dos arquivos (***before-render***)
+- Depois de gerar os arquivos (***after-render***)
+
+## **Como definir os hooks declarativos?**
+
+A definição dos hooks declarativos de um Template pode ser feita no arquivo de configuração **`yaml`** do Template, conforme o exemplo abaixo:
+
+```yaml
+hooks:
+  - type: run
+    trigger: before-input
+    working-dir: "{{project_name}}"
+    commands:
+      - echo plugin-python before-input!
+  - type: run-script
+    trigger: before-render
+    script: script.py
+  - type: edit
+    trigger: after-render
+    path: src/some-file.txt
+    changes:
+      - insert:
+          line: 0
+          value: "# Text inserted in first line\n\n"
+          when:
+            not-exists: "# Text inserted in first line"
+      - search:
+          string: "# Text inserted in first line"
+          insert-before:
+            snippet: snippets/insert-before-first-line.txt
+          when:
+            not-exists: "# Text inserted before first line"
+      - search:
+          pattern: (Text )inserted in( first line)
+          replace-by:
+            value: \1moved from\2
+          when:
+            not-exists: print(f"Hello {name}!")
+  - type: render-templates
+    trigger: after-render
+    path: templates-java
+    condition:
+      variable: language
+      operator: ==
+      value: java
+```
+
+<alert color="secondary">
+É possível definir vários hooks em um mesmo Template.
+</alert>
+
+## **Gatilhos**
+
+Os gatilhos dos hooks declarativos são definidos pelo atributo **`trigger`** e indicam em que momento o hook irá rodar, podendo assumir um dos seguintes valores:
+
+- **`before-input`**: Antes de perguntar os parâmetros para o usuário.
+- **`before-render`**: Antes da geração dos arquivos.
+- **`after-render`**: Após a geração dos arquivos.
+
+## **Condições**
+
+A execução de um hook declarativo pode ser condicional e é controlada pelo atributo opcional **`condition`**. Você deve definir uma condição com:  
+
+**1.** Uma variável (**`variable`**)  
+
+**2.** Um operador (**`operator`**)  
+
+**3.** Em seguida, o valor de referência (**`value`**).   
+
+As variáveis acessíveis são as definidas pelos **`inputs`** e **`computed-inputs`** do Template/Plugin. No trecho de exemplo apresentado abaixo, é verificado se o valor do input **`language`** é igual à string **`java`**. Em caso positivo, são gerados os arquivos definidos pelos Templates que estão na pasta **`templates-java`**.   
+
+```yaml
+- type: render-templates
+    trigger: after-render
+    path: templates-java
+    condition:
+      variable: language
+      operator: ==
+      value: java
+```
+
+Os operadores disponíveis para condições são:
+
+- **`==`**: Valida se os valores são iguais.
+- **`!=`**: Valida se os valores são diferentes.
+- **`>`**: Valida se a variável é maior ao valor.
+- **`<`**: Valida se a variável é menor ao valor.
+- **`>=`**: Valida se a variável é maior ou igual ao valor.
+- **`<=`**: Valida se a variável é menor ou igual ao valor.
+- **`containsAny`**: Valida se a variável do tipo lista contém qualquer um dos valores contidos em **`value`**.
+- **`containsAll`**: Valida se a variável do tipo lista contém todos os valores valores contidos em **`value`**.
+- **`containsOnly`**: Valida se a variável do tipo lista contém todos os valores valores contidos em **`value`** e não contém outros elementos.
+
+### **Tipos de hooks declarativos**
+
+Existem 4 tipos de hooks declarativos que são definidos pelo atributo **`type`**:
+
+- **`run`**: Executa um ou mais comandos.
+- **`run-script`**: Executa um script Python que exporta uma função **`run`**.
+- **`edit`**: Faz edições em um arquivo existente.
+- **`render-templates`**: Faz a interpolação de Templates [**Jinja**](https://jinja.palletsprojects.com/en/3.1.x/) de forma condicional.
+
+A estrutura de um hook declarativo pode ter diferentes atributos, conforme o tipo que foi definido. Veja os exemplos abaixo:
+
+## **run**
+
+Os hooks declarativos do tipo **`run`** servem para executar comandos. Alguns exemplos de utilização interessante são:
+
+- Instalar dependências no projeto;
+- Executar comandos de alguma ferramenta que faz parte da Stack;
+- Executar configurações através de scripts shell ou batch.
+
+Veja abaixo um exemplo simples de um hook do tipo **`run`**:
+
+```yaml
+    - type: run
+    trigger: before-input
+    commands:
+      - echo hello from before-input!
+      - echo you can define multiple commands in a run hook!
+```
+
+Ao aplicar o Template/Plugin que define esse hook, antes de perguntar os parâmetros de entrada, o console mostra as seguintes frases: 
+
+- **`hello from before-input!`**
+- **`you can define multiple commands in a run hook!`**.
+
+É possível definir comandos diferentes por sistema operacional. Veja o exemplo abaixo:
+
+```yaml
+    - type: run
+    trigger: before-input
+    working-dir: "{{project_name}}/some/dir"
+    linux:
+      - echo hello from before-input on linux!
+    windows:
+      - cmd /C echo hello from before-input on windows!
+    mac:
+      - echo hello from before-input on mac!
+```
+
+Neste caso, ao aplicar o Template/Plugin, a mensagem que aparece no console será diferente para cada sistema operacional. Os sistemas operacionais suportados são:
+
+- **`linux`**
+- **`mac`**
+- **`windows`**
+
+<alert color="warning" >
+
+Operadores de encadeamento de comandos e redirecionamento de saída (**|, ||, &&, &, >, >>, ;**) não são suportados e são interpretados como strings ao serem executados.
+
+</alert>
+
+O atributo **`working-dir`** permite definir um diretório, relativo à raiz do projeto, onde os comandos serão executados. Caso o atributo não seja informado, os comandos serão executados na raiz do projeto.  Na definição do **`working-dir`** podem ser usadas expressões Jinja.
+
+### **Comando **`run`** no Windows**
+
+Para executar outras aplicações através do `run` no **Windows**, utilize um dos exemplos abaixo:
+
+
+1. Usando o **`cmd`**. Nesse caso, abre uma janela do CMD extra quando o plugin está sendo aplicado, mas depois é fechada automaticamente. 
+
+```yaml
+     - type: run
+    trigger: after-render
+    working-dir: "{{project_name}}/some/dir"
+    linux:
+      - npm install
+    windows:
+      - cmd /c npm install
+    mac:
+      - npm instal
+```
+
+
+2. Chame o binário do **npm** diretamente, aqui o npm é executado na mesma janela:
+
+```yaml
+    - type: run
+    trigger: after-render
+    working-dir: "{{project_name}}/some/dir"
+    linux:
+      - npm install
+    windows:
+      - npm.cmd install
+    mac:
+      - npm instal
+```
+
+
+## **run-script**
+
+Os hooks declarativos do tipo **`run-script`** servem para executar scripts Python, dentro de um arquivo **`plugin.yaml`** ou **`template.taml`**. Veja abaixo um exemplo de um hook declarativo do tipo **`run-script`**:
+
+```yaml
+  - type: run-script
+    trigger: before-render
+    script: path/to/script.py
+```
+
+O atributo **`script`** define o caminho onde o script a ser executado está na estrutura de arquivos do Template/Plugin.
+
+<alert color="warning" >
+O script a ser executado deve estar fora da pasta **`templates`** do Plugin/Template para não ser interpolado.
+</alert>
+
+É comum esperar que neste script, uma função com o nome **`run`** esteja definida. Essa função recebe como parâmetro um objeto da classe **Metadata** (**`class Metadata`**) do template framework e que devolve em seu retorno um Metadata, podendo ser o mesmo recebido ou outro criado pela função.
+
+### **Metadata**    
+Quando o **`run-script`** for executado e exportado usando uma classe **Metadata**, você pode visualizar uma estrutura como a do exemplo abaixo:   
+
+```
+import shutil
+import os
+from templateframework.metadata import Metadata
+
+def run(metadata: Metadata = None):
+    inputs = metadata.all_inputs()
+    inputs_local = metadata.inputs
+    inputs_global = metadata.global_inputs
+    inputs_computed_global = metadata.global_computed_inputs
+    target_path = metadata.target_path
+```
+
+Confira a descrição de cada item da classe:   
+- **`inputs = metadata.all_inputs()`**: Retorna todos os inputs processados do Plugin/Template;  
+- **`inputs_local = metadata.inputs`**: É o dicionário dos inputs;  
+- **`inputs_global = metadata.global_inputs`**: Dicionário de global inputs;  
+- **`inputs_computed_global = metadata.global_computed_inputs`**: Dicionário de global conputed inputs;  
+- **`target_path = metadata.target_path`**: É o path onde o Plugin/Template está sendo executado.  
+
+Veja abaixo um exemplo simples de definição de um script, que pode ser executado como um hook declarativo:
+
+```python
+from templateframework.metadata import Metadata
+def run(metadata: Metadata = None):
+    print("Hello from script.py!")
+    return metadata
+```
+
+No script você pode usar a biblioteca padrão do Python 3.8 e as bibliotecas extra que são dependências do STK CLI. Veja abaixo, algumas que são incluídas:
+
+- [<ins>**Requests**</ins>](https://docs.python-requests.org/en/latest/).
+- [<ins>**Questionary**</ins>](https://questionary.readthedocs.io/en/stable/).
+
+## **edit**
+
+Um hook declarativo do tipo **`edit`** define alterações feitas em arquivos existentes. Veja abaixo um exemplo de definição de um hook declarativo do tipo **`edit`**:
+
+```yaml
+    - type: edit
+    trigger: after-render
+    path: src/some-file.txt
+    changes:
+      - insert:
+          line: 0
+          value: "# Text inserted in first line\n\n"
+          when:
+            not-exists: "# Text inserted in first line"
+      - search:
+          string: "# Text inserted in first line"
+          insert-before:
+            snippet: snippets/insert-before-first-line.txt
+          when:
+            not-exists: "# Text inserted before first line"
+      - search:
+          pattern: (Text )inserted in( first line)
+          replace-by:
+            value: \1moved from\2
+          when:
+            not-exists: print(f"Hello {name}!")
+```
+
+- O atributo **`path`** define o arquivo a ser editado pelo hook. Pode-se usar expressões Jinja em sua definição.
+
+- O atributo **`changes`** é uma lista de ações de edição que serão executadas na ordem em que aparecem. As ações de edição podem ser **`insert`** ou **`search`**.
+
+Ações de edição do tipo **`insert`** possuem a estrutura abaixo:
+
+```yaml
+      - insert:
+          line: 0
+          value: "# Text inserted in first line\n\n"
+          when:
+            not-exists: "# Text inserted in first line"
+```
+
+- O atributo **`line`** define em qual linha será feita a inserção. A primeira linha é `0`, é possível usar o valor `-1` para inserir na última linha.
+
+- O atributo **`value`** indica qual será o texto inserido na linha.
+
+- O atributo **`when`** indica as condições em que, quando avaliadas como verdadeiras, a edição é aplicada. Existem duas condições disponíveis: **`not-exists`** e **`not-exists-snippet`**.  Caso não sejam satisfeitas, a ação de edição não será executada. 
+
+A condição **`not-exists`** define que a inserção será realizada apenas se o texto definido na condição não for encontrado no arquivo sendo editado.
+
+A condição **`not-exists-snippet`** possui um comportamento semelhante ao **`not-exists`**, mas usa o conteúdo de um arquivo de snippet como base para verificar a condição.
+
+Apesar de não ser comum, é possível usar **`not-exists`** e **`not-exists-snippet`** em conjunto, a avaliação neste caso é o resultado de um **`and`** entre os dois resultados.
+
+É possível substituir o atributo **`value`** por **`snippet`** para definir um arquivo com o conteúdo a ser inserido. Veja o exemplo abaixo:
+
+```yaml
+      - insert:
+          line: 0
+          snippet: path/to/snippet.txt
+          when:
+            not-exists: "# Text inserted in first line"
+```
+
+No exemplo acima, o texto foi inserido na primeira linha do arquivo e o conteúdo do arquivo **`path/to/snippet.txt`**, que está na estrutura do Plugin/Template, foi editado.
+
+Ações de edição do tipo **`search`** possuem a estrutura abaixo:
+
+```yaml
+      - search:
+          string: "# Text inserted in first line"
+          ou
+          pattern: (some)\s+(regular)\s+(expression)
+          ou
+          snippet: snippets/snippet.txt
+          replace-by:
+            snippet: snippets/snippet.txt
+            ou
+            value: \1 \2 \3
+          ou
+          insert-before:
+            snippet: snippets/snippet.txt
+            ou
+            value: a string
+          ou
+          insert-after:
+            snippet: snippets/snippet.txt
+            ou
+            value: a string
+          when:
+            not-exists: "# Text inserted before first line"
+```
+
+
+Os atributos **`string`**, **`pattern`** ou **`snippet`** indicam o que será buscado no arquivo sendo editado.
+
+<alert color="warning" >
+Os atributos **`string`**, **`pattern`** e **`snippet`** não devem ser usados em conjunto em um **`search`**.
+</alert>
+
+Caso seja utilizado **`string`** a busca é via match exato da string informada, caso seja **`pattern`** pode-se definir uma expressão regular para realizar a busca e caso seja **`snippet`** pode-se definir o caminho para um arquivo cujo conteúdo será usado como parâmetro para realizar a busca.
+
+A ação de edição busca pela primeira ocorrência do texto no arquivo, e aplica uma das seguintes operações: **`replace-by`**, **`insert-before`** ou **`insert-after`**. 
+
+<alert color="secondary">
+Apenas uma das operações deve ser definida.
+</alert>
+
+- A operação **`replace-by`** substitui o primeiro match encontrado no arquivo sendo editado pelo texto definido em **`value`** ou no **`snippet`**, que não devem ser usados em conjunto.
+
+- A operação **`insert-before`** insere o **`value`** ou **`snippet`** na linha anterior à linha onde o primeiro match foi encontrado.
+
+- A operação **`insert-after`** insere o **`value`** ou **`snippet`** na próxima linha em relação à linha onde o primeiro match foi encontrado.
+
+Caso seja usado **`pattern`** os grupos podem ser usados no **`replace-by`**, veja o exemplo abaixo:
+
+ ```yaml
+       - search:
+          pattern: (some)\s+(regular)\s+(expression)
+          replace-by:
+            value: \1 \2 \3
+ ```
+
+O conteúdo tanto de **`value`** quanto do arquivo indicado em **`snippet`** pode conter expressões Jinja que serão interpoladas antes da aplicação.
+
+## **render-templates**
+
+Um hook declarativo do tipo **`render-templates`** pode ser usado para executar a geração condicional de arquivos. Ao usar um hook declarativo desse tipo, associado a uma condição, é possível controlar se algum arquivo será ou não gerado de acordo com uma condição. Veja um exemplo de utilização:
+
+```yaml  
+- type: render-templates
+  trigger: after-render
+  path: templates-java
+  condition:
+    variable: language
+    operator: ==
+    value: java
+- type: render-templates
+  trigger: after-render
+  path: templates-kotlin
+  condition:
+    variable: language
+    operator: ==
+    value: kotlin
+```
+
+No caso acima, quando o input **`language`** for preenchido com o valor **`java`**, ele gerará os arquivos que estão na pasta **`templates-java`**. Caso o input esteja preenchido com o valor **`kotlin`**, ele gerará os arquivos que estão na pasta **`templates-kotlin`**

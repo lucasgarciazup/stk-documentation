@@ -1,0 +1,53 @@
+---
+title: stk list plugin
+weight: 16
+description: Nesta seção, você encontra mais informações sobre o comando 'stk list plugin'.
+---
+
+O comando **`stk list plugin`** lista os plugins disponíveis na stack oficial da StackSpot, e as adicionadas pelo próprio usuário. O comando também é capaz de filtrar os plugins por tipo, permitindo ao usuário saber quais se aplicam em uma stack de aplicação ou em uma de ambiente.
+
+
+### **Como funciona?**
+O comando exibe uma lista de plugins com seus atributos agrupados por stack.
+
+A lista pode conter:
+- Nome da stack.
+- Nome do plugin.
+- Descrição do plugin.
+- Tipo do plugin (env, app)
+- Linguagens suportadas.
+- Última versão  do plugin disponível.
+
+### **Parâmetros**
+Confira a opção disponível no comando:
+
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `STACK` | Define o nome da stack. Usado para listar somente os plugins dessa stack. |
+| `--app` ou `-A` | Lista apenas os plugins que são aplicados por stacks criadas com o comando `os create app`.   |
+| `--env` ou `-E` | Lista apenas os plugins que são aplicados por stacks criadas com o comando `os create env`. |
+| `--all` ou `-a ` | Lista os plugins de todos os catálogos independente da stack. |
+| `--local` ou `-l` | Lista os plugins que já foram aplicados na stack atual. Precisa ser executado dentro da pasta de uma stack. |
+
+### **Exemplo**
+Você pode usar esse comando de qualquer local na sua máquina e o resultado é a listagem dos plugins existentes na sua organização. Veja o exemplo abaixo:
+
+![](/v3.0.0/stkgifs/stk-list-plugin.gif)
+
+
+## **Comando `stk list plugin --local`**
+Você pode usar o comando **`stk list plugin`** com a flag `--local` para consultar o diretório onde esse comando foi executado e com isso avaliar quais foram os plugins aplicados no projeto.
+
+Essa flag retorna dois cenários:
+
+**Cenário 1:** Se algum plugin foi aplicado, ele retorna uma lista.
+
+**Cenário 2:** Se nenhum plugin foi aplicado, ele retorna a mensagem: **`no plugin(s) found`**.
+
+
+### Veja Também
+- [<ins>**stk create plugin**</ins>]({{< ref path="/stk-create-plugin.md" >}})
+- [<ins>**stk apply plugin**</ins>]({{< ref path="/stk-apply-plugin.md" >}})
+- [<ins>**stk add plugin**</ins>]({{< ref path="/stk-add-plugin.md" >}})
+- [<ins>**stk delete plugin**</ins>]({{< ref path="/stk-delete-plugin.md" >}})

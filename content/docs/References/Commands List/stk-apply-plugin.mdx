@@ -1,0 +1,52 @@
+---
+title: stk apply plugin
+weight: 19
+description: Nesta seção, você encontra mais informações sobre o comando 'stk apply plugin'.
+---
+
+O comando **`stk apply plugin`** é usado no seu projeto de ambiente e aplicação para adicionar novas funcionalidades.
+
+### **Como funciona?**
+Você pode utilizar o comando **`stk apply plugin`**, para aplicar plugins em um projeto, seja de ambiente ou de aplicação.
+
+<alert color="secondary">
+Se você executar o comando na pasta de um projeto que não tenha sido criado por meio de uma stack (um projeto legado, por exemplo), o comando pedirá a autorização ao usuário antes de aplicar o plugin.
+</alert>
+- As stacks possuem uma lista específica de plugins que podem ser aplicadas.
+
+- A estrutura e descrição do **`stk apply plugin`**:
+```
+stk apply plugin <plugin-name>
+```
+
+- **`stackspot-plugin-name`**: Nome de um plugin de autoria da StackSpot.
+O resultado do comando acima pode alterar arquivos de configuração, incluir trechos de código, incluir arquivos e pastas no projeto alvo.
+
+### **Parâmetros**
+Confira as opções disponíveis no comando:
+
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `NAME` | Define o plugin que será aplicado com o formato plugin. Se a stack for diferente do template inicial, você recebe uma mensagem de erro. Se a stack não for informada, o plugin será aplicado na stack que ele foi criado.|
+| `-p ou --template-path` | Aplica um plugin que não foi publicado em uma stack. |
+
+## **Exemplos**
+### **Exemplo de `apply plugin` em .NET**
+
+![](/v3.0.0/stkgifs/stk-apply-plugin-dotnet.gif)
+
+### **Exemplo de `apply plugin` em Kotlin**
+
+![](/v3.0.0/stkgifs/stk-apply-plugin-sqs-kotlin-app.gif)
+
+### **Exemplo de `apply plugin` com deploy**
+
+![](/v3.0.0/stkgifs/stk-apply-plugin-with-deploy.gif)
+
+
+### **Veja Também**
+- [<ins>**stk create plugin**</ins>]({{< ref path="/stk-create-plugin.md" >}})
+- [<ins>**stk list plugin**</ins>]({{< ref path="/stk-list-plugin.md" >}})
+- [<ins>**stk add plugin**</ins>]({{< ref path="/stk-add-plugin.md" >}})
+- [<ins>**stk delete plugin**</ins>]({{< ref path="/stk-delete-plugin.md" >}}) 

@@ -1,0 +1,47 @@
+---
+title: stk create plugin
+weight: 15
+description: Nesta seção, você encontra mais informações sobre o comando 'stk create plugin'.
+---
+
+O comando **`stk create plugin`** permite criar novos plugins para a StackSpot.
+
+### **Como Funciona?**
+Ao rodar o comando no terminal dentro da pasta de uma stack, é gerada uma sub-pasta com a estrutura para criar o plugin. 
+O usuário deve editar o arquivo **`plugin.yaml`** e configurar os parâmetros de entrada do plugin.
+
+### **Criar plugins em repositórios separados**
+Caso queira criar um plugin separado de uma stack para poder ser usado em mais de uma stack, é preciso rodar o comando no terminal fora da pasta de uma stack. Depois disso, uma pasta é gerada com a estrutura para criar o plugin. 
+> Esta pasta será inicializada como um repositório Git.
+
+O usuário deve editar o arquivo **`plugin.yaml`** e configurar os parâmetros de entrada do plugin.
+
+### **Parâmetros**
+Confira as opções disponíveis no comando:
+
+| Parâmetro | Descrição                                                                                                                                                                                                                                                                                      |
+| ----------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `NAME` | Define o nome do plugin criado. Se o nome não for informado, é definido o nome do repositório do parâmetro `--remote`.                                                                                                                                                                         |
+| `--description` | É o texto que descreve o plugin e a sua finalidade. Esta descrição também será exibida no comando `stk list plugin` para que o usuário saiba sobre o plugin                                                                                                                                    |`
+| `--types ` | Define os tipos do plugin. O plugin pode ser aplicado em uma stack criada com `stk create app`, `stk create env` ou nos dois. Se for aplicado nesta última, os valores para isso são:  `app` e `env`. Para definir mais de um tipo de plugin, use uma vírgula.                                 |
+| `--remote` | É um parâmetro que define a url remota do repositório Git, que será usada como *origin* para o plugin. Se o usuário não informar o remote, será preciso executar o `git add remote` para poder publicar o plugin no Git. (Usar apenas caso esteja usando repositórios separados para plugins.) |
+| `--deploy` | Adiciona uma seção de ciclo de vida no `plugin.yaml`, onde você pode definir os comandos executados pelo `stk deploy` do CLI.                                                                                                                                                                  |
+
+## **Exemplos**
+### **Exemplo de criação de um plugin env**
+![](/v3.0.0/stkgifs/stk-create-plugin-env.gif)
+
+
+### **Exemplo de criação de um plugin env com deploy**
+![](/v3.0.0/stkgifs/stk-create-plugin-env-with-deploy.gif)
+
+
+### **Exemplo de criação de um plugin app**
+![](/v3.0.0/stkgifs/stk-create-plugin-app.gif)
+
+
+### **Veja Também**
+- [<ins>**stk list plugin**</ins>]({{< ref path="/stk-list-plugin.md" >}})
+- [<ins>**stk apply plugin**</ins>]({{< ref path="/stk-apply-plugin.md" >}})
+- [<ins>**stk add plugin**</ins>]({{< ref path="/stk-add-plugin.md" >}})
+- [<ins>**stk delete plugin**</ins>]({{< ref path="/stk-delete-plugin.md" >}})

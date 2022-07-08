@@ -1,0 +1,50 @@
+---
+title: stk delete plugin
+weight: 18
+description: Nesta seção, você encontra mais informações sobre o comando 'stk delete plugin'.
+---
+
+O comando **`stk delete plugin`** remove plugins dentro de um projeto stack. Para fazer isso, o criador precisa mandar a alteração para o GitHub através do comando **`git push`**.  
+ 
+Ao executar o comando **`stk delete plugin <nome-plugin>`** dentro de sua stack, a pasta do seu plugin e as configurações dos plugins em repositórios separados serão removidas.
+
+### **Como funciona?**
+A sintaxe do comando é: **`stk dele plugin [OPTIONS] PLUGIN-FOLDER`**.  
+
+### **Parâmetros**
+Confira as opções disponíveis no comando:
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `PLUGIN-FOLDER` | É a pasta do plugin que representa o plugin que será removido da stack.  |
+| `--repo-path` | Permite executar o comando de fora da sua stack. O formato é `stk delete plugin <nome-plugin> --repo-path <caminho-stack>`. |
+
+## **Exemplos**
+
+O exemplo abaixo mostra como remover o plugin `my-plugin` da stack `my-stack`.
+
+1. Navegue para a pasta da stack que contém o plugin a ser removido:
+```
+cd my-stack
+```
+2. Na stack, execute o comando para apagar:
+
+```
+stk delete plugin my-plugin
+``` 
+
+E o retorno será::
+```
+- Plugin my-plugin deleted from <caminho-da-sua-stack>.
+> Now, you can run a git push command to effectively remove from remote repository.
+```
+
+Veja a execução abaixo:  
+
+![](/v3.2.0/stkgifs/stk-delete-plugin.gif)
+
+### Veja Também
+- [<ins>**stk create plugin**</ins>]({{< ref path="/stk-create-plugin.md" >}})
+- [<ins>**stk list plugin**</ins>]({{< ref path="/stk-list-plugin.md" >}})
+- [<ins>**stk apply plugin**</ins>]({{< ref path="/stk-apply-plugin.md" >}})
+- [<ins>**stk add plugin**</ins>]({{< ref path="/stk-add-plugin.md" >}})

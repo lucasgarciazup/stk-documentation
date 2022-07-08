@@ -1,0 +1,50 @@
+---
+title: stk delete template
+weight: 14
+description: Nesta seção, você encontra mais informações sobre o comando 'stk delete template'.
+---
+
+O comando **`stk delete template`** remove templates dentro de um projeto de stack. Para fazer isso, o usuário precisa mandar a alteração para o GitHub através do comando **`git push`**. 
+
+Ao executar o comando **`stk delete template <nome-template>`** dentro de sua stack, a pasta do seu template e suas configurações de submódulos (caso esteja usando) do repositório serão removidas.
+
+ ### **Como funciona?**
+A sintaxe do comando é: **`stk delete plugin [OPTIONS] TEMPLATE-FOLDER`**.  
+
+### **Parâmetros**
+Confira as opções disponíveis no comando:
+
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `TEMPLATE-FOLDER` | É a pasta do template que representa o template que será removido da stack.   |
+| `--repo-path` | Permite executar o comando de fora da sua stack. O formato é `stk delete template <nome-template> --repo-path <caminho-stack>`. |
+
+## **Exemplos**
+
+O exemplo abaixo mostra como remover o template `my-template` da stack `my-stack`.
+
+1. Navegue para a pasta da stack que contém o template a ser removido:
+```
+cd my-stack
+```
+2. Nessa stack, foi executado o comando de deleção:
+
+```
+stk delete template my-template
+``` 
+E o retorno será:
+```
+- template my-template deleted from <caminho-da-sua-stack>.
+> Now, you can run a git push command to effectively remove from remote repository.
+```
+
+Veja a execução abaixo:  
+
+![](/v3.2.0/stkgifs/stk-delete-template.gif) 
+
+
+### **Veja Também**
+- [<ins>**stk create template**</ins>]({{< ref path="/stk-create-template.md" >}})
+- [<ins>**stk list template**</ins>]({{< ref path="/stk-list-template.md" >}})
+- [<ins>**stk add template**</ins>]({{< ref path="/stk-add-template.md" >}})

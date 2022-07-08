@@ -1,0 +1,55 @@
+---
+title: Desinstalar a v1
+weight: 7
+description: 'Nesta seção, você encontra como desinstalar a versão 1 do STK CLI.'
+---
+
+
+
+1. Verifique se você está usando a versão **STK v.1**. Rode o comando no seu terminal: 
+
+```
+stk --version
+```
+
+2. Veja abaixo como desinstalar a v1 do STK CLI de acordo com seu sistema operacional: 
+
+### **Windows**
+
+Siga os passos abaixo:
+
+**Passo 1.** Acesse o Painel de controle do seu computador;
+
+**Passo 2.** Clique em 'Programas' e logo depois 'Desinstalar um programa';
+
+**Passo 3.** Selecione **stkcli** e faça o processo para desinstalar.
+
+
+### **Linux**
+Siga os passos abaixo:
+
+**Passo 1.** Remova o diretório de arquivos do sistema do STK CLI, rode:
+
+```
+rm -rf ~/.stk
+```
+>  Se você já tem a v2 instalada na sua máquina, esse passo irá removê-la. Com isso, é necessário instalar a v2 novamente.
+
+**Passo 2.** Remova o binário do STK CLI usando o comando abaixo:
+```
+rm /usr/local/bin/stk
+```
+
+### **MacOS**
+
+**Passo 1.** Remova o diretório de arquivos do sistema do STK CLI, rode:  
+
+```
+rm -rf ~/.stk
+```
+> Se você já tem a v2 instalada na sua máquina, esse passo irá removê-la. Com isso, é necessário instalar a v2 novamente.
+
+**Passo 2.** Remova o binário do STK CLI usando o comando abaixo:
+```
+rm /usr/local/bin/stk
+```

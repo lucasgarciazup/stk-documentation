@@ -1,0 +1,83 @@
+---
+title: stk create stack
+weight: 6
+description: Nesta seção, você encontra mais informações sobre o comando 'stk create stack'.
+---
+
+O comando **`stk create stack`** cria um repositório para a stack de templates e plugins.
+
+### **Como funciona?**
+O comando permite criar um repositório vazio para a stack, no qual serão adicionados os templates e plugins.
+
+
+### **Parâmetros**
+Confira as opções disponíveis no comando:
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `NAME` | Define o nome da stack criada. Se o nome não for informado, é definido o nome do repositório do parâmetro `--remote`.   |
+| `--remote` | É um parâmetro que define a URL remota do repositório Git, que será usada como **origin** para a stack. Se o usuário não informar o remote, será preciso executar o `git add remote` para poder publicar a stack no Git. |
+
+### **Exemplo**
+Veja o exemplo abaixo de como criar a sua stack:
+
+1. Rode em seu terminal:
+```
+stk create stack nome-da-sua-stack
+```
+
+2. O retorno será:
+```
+Creating stack nome-da-sua-stack
+```
+
+3. Logo depois, rode 
+```
+cd nome-da-sua-stack/
+tree
+cat stack.yaml
+tree
+```
+
+4. Agora, você pode adicionar plugins a sua stack com o comando **`stk add plugin`**.
+
+## Adicionando um stackfile a uma stack
+
+Os criadores podem definir **stackfiles** e incluí-los nas stacks para permitir que os usuários tenham acesso a eles de forma simplificada. Para isso, existem duas possibilidades:  
+
+1. Criar uma pasta `stackfiles` no repositório criado anteriormente pelo comando `stk create stack` e colocar o arquivo` yaml` do stackfile dentro desta pasta;   
+
+2. Executar o comando `stk create stackfile <nome-stackfile>` dentro da pasta `stackfiles` para criar um `stackfile` padrão para desenvolvimento. 
+
+Ao publicar essa alteração no repositório da stack, o stackfile já estará disponível para o uso.
+
+Veja um exemplo do layout de um repositório com stackfiles:
+```
+/stack-python
+  stack.yaml
+  /python-app-template/
+    template.yaml
+    /templates/
+        ...
+  /flask-api-plugin/
+    plugin.yaml
+    /templates/
+        ...
+  /zappa-deploy-plugin/
+    plugin.yaml
+    /templates/
+        ...
+  /stackfiles/
+    default.yaml
+    flask-serverless-api.yaml
+```
+
+### **Exemplos**
+![](/v3.0.0/stkgifs/stk-create-stack.gif)
+
+
+### **Veja Também**
+- [<ins>**stk import stack**</ins>]({{< ref path="/stk-import-stack.md" >}})
+- [<ins>**stk update stack**</ins>]({{< ref path="/stk-update-stack.md" >}})
+- [<ins>**stk delete stack**</ins>]({{< ref path="/stk-delete-stack.md" >}})
+- [<ins>**stk list stack**</ins>]({{< ref path="/stk-list-stack.md" >}})

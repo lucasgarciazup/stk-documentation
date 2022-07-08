@@ -1,0 +1,61 @@
+---
+title: Configurações avançadas de Template
+weight: 7
+description: >-
+  Nesta seção, você encontra configurações avançadas para criar e personalizar um Template.
+---
+
+## Personalização do seu Template**  
+Você pode adicionar mais personalizações em seus Templates por meio do Jinja, que é uma engine para criação de Templates dinâmicos.
+
+Para mais informações, acesse a [<ins>**documentação oficial do Jinja**</ins>](https://jinja.palletsprojects.com/en/3.0.x/templates/).
+
+### **Exemplo de criação de Template: Aplicação Java**  
+Veja abaixo um exemplo de personalização de Template, nesse caso é usado para a criação de uma aplicação Java. Você pode ver mais detalhes [**desse Template no GitHub**](https://github.com/stack-spot/template-example). 
+
+No Template desse exemplo, há duas variáveis de input **project_name** e **group_id**, que você pode usar para personalizar o Template. 
+
+Nesse Template, é possível:  
+- Criar automaticamente pastas e arquivos usando inputs;    
+- Criar conteúdo condicional usando input;    
+- Substituir informações em arquivos já criados;    
+- Realizar ações antes e depois da aplicação do Template.  
+
+Veja os passos abaixo:  
+1. Ao criar um novo input chamado **junit** no arquivo **template.yaml**.
+
+Esse input é usado para perguntar ao usuário se ele deseja usar o **junit** em seu projeto (é um lib para testes.).  
+
+2. Um arquivo **pom.xml** padrão foi criado para gerenciar as dependências do projeto que irá ser criado a partir do seu Template. Dentro dele, há duas substituições usando os delimitadores de substituição do Jinja: **{{ inputs.group_id }}** e **{{ inputs.project_name }}**, e referem-se aos inputs do Template.
+
+Nos lugares onde eles aparecem no arquivo **pom.xml**, será substituído pelo conteúdo que o usuário digitar ao criar sua aplicação.  
+
+3. Existe uma condição usando delimitadores **{% if `<condition>` %} {% endif %}** para armazenar uma condição.
+
+A condição é: caso a pessoa tenha selecionado que gostaria de usar o **junit**, ele irá adicionar o texto referente à sua dependência, caso contrário, não adicionará.  
+
+>Na [<ins>**documentação do Jinja**</ins>](https://jinja.palletsprojects.com/en/3.0.x/templates/) você consegue ver outros comandos possíveis e os delimitadores.  
+
+4. Foram criadas duas pastas e um arquivo usando os delimitadores de substituição e os inputs do  **project_name** e **group_id**, e o conteúdo do arquivo também contém uma substituição como pode ser observado a seguir:  
+
+![](/v3.0.0/ptbr/guia_pastas_arquivo.png)
+
+5. É possível realizar ações antes e depois da aplicação desse Template. Para isso, você deve criar um arquivo **main.py**, que contém um código de exemplo.  
+
+Um exemplo prático é a instalação de alguma dependência após a criação da aplicação. Veja abaixo o modelo da implementação: 
+
+![](/v3.0.0/ptbr/guia_main_py.png)
+
+O gif abaixo mostra o exemplo completo: 
+
+![](/v3.2.0/stkgifs/guia_programatico.gif)
+
+### **Teste a sua personalização**    
+O teste ocorre da mesma forma que o Passo 6 da criação de um Template. Crie um app por meio do comando:  
+
+```
+stk create app <nome_da_aplicação> --template-path <path_template_local>
+```  
+
+![](/v3.2.0/stkgifs/guia_resultado_programatico.gif)
+

@@ -1,0 +1,133 @@
+---
+title: Criar um plugin
+weight: 4
+description: >-
+  Nesta seção, você encontra detalhes de como criar um Plugin.
+---
+## **Antes de você começar**
+
+Um **Plugin** permite a agregação de novas capacidades ao Template base por meio de ações como:
+- Inclusão de código fonte;
+- Importação de bibliotecas;
+- Execução de comandos e operações complexas para adicionar essas capacidades.
+
+A estrutura de um **Plugin** também é a mesma de um **Template**, se diferenciando apenas pelos tipos que são **`app`** e **`env`**, em vez de **`app-template`** e **`env-template`**.
+Todos os passos do **`Template`** podem ser aplicados ao Plugin, diferenciando apenas alguns comandos.
+
+### **Comandos relacionados aos Plugins**
+<tabs name="T1">
+<tab title="1. Criar novos Plugins">
+
+```
+stk create plugin
+```
+
+</tab>
+<tab title="2. Adicionar Plugins às Stack já criadas">
+
+```
+stk add plugin <plugin-repo-url> ou <path-para-pasta-do-plugin> 
+```
+
+</tab>
+<tab title="3. Listar Plugins disponíveis">
+
+```
+stk list plugin
+```
+
+</tab>
+
+<tab title="4. Aplicação para adicionar novas funcionalidades">
+
+```
+stk apply plugin <plugin-name>
+```
+
+</tab>
+
+<tab title="5. Remover Plugins dentro de um projeto">
+
+```
+stk delete plugin my-plugin
+```
+
+</tab>
+</tabs>
+
+## **Criar Plugin**
+Você pode criar um Plugin de duas formas:  
+**1.** Criar diretamente em uma Stack.  
+**2.** Criar o Plugin já atrelado a algum repositório  
+
+Este guia mostra a segunda opção. Para detalhes da primeira forma consulte a página [<ins>**`Criar uma Stack`**</ins>]({{< ref path="/docs/Creators Guide/howto-create-stack.md" >}}).
+
+## **Criar Plugin para ser compartilhado**  
+Siga os passos abaixo para criar um Plugin:
+
+### **Passo 1. Criar seu repositório Git** 
+Crie um repositório Git para hospedar o seu Plugin. 
+
+### **Passo 2. Criar o Plugin localmente**
+Rode o comando abaixo para criar o seu Plugin, lembre-se de nomeá-lo:
+
+```
+stk create plugin nome-do-plugin
+```
+### **Passo 3. Escolher o tipo de Plugin** 
+Você pode escolher o tipo do Plugin: [**`app`**]({{< ref path="/docs/References/Commands List/stk-create-app.md" >}})) ou [**`env`**]({{< ref path="/docs/References/Commands List/stk-create-env.md" >}})). Logo depois, você precisa descrever o que esse Plugin faz.
+
+### **Passo 4. Hospedar o Plugin no seu repositório**
+Agora, você precisa subir esse Plugin de forma isolada no repositório que você criou no **Passo 1**. 
+- Entre na pasta do Plugin, no exemplo desse guia, o nome é 'nome-do-plugin': 
+
+```
+cd nome-do-plugin
+```
+```
+git remote add origin url_do_seu_repo
+```
+```
+git push origin main
+```
+
+### **Passo 5. Adicionar esse Plugin na Stack** 
+Adicione o seu Plugin na Stack que você quiser. 
+
+- Entre na pasta da Stack:
+```
+cd nome-da-stack
+```
+- Use a URL do seu repositório e execute o comando:
+```
+stk add plugin url-do-seu-repo-de-plugin
+```
+Pronto, o Plugin foi adicionado na Stack! 
+
+### **Passo 6. Hospedar a Stack no repositório**
+Exectute o comando abaixo para subir a sua Stack no repositório:
+```
+git push origin main 
+```
+### **Passo 7. Importar a Stack**
+Execute o comando no terminal: 
+```
+stk import stack <URL-Git-da-stack>
+```
+### **Passo 8. Atualizar a sua Stack**
+Execute o comando:
+```
+stk update stack
+```
+### **Passo 9. Confirmar se o Plugin foi adicionado na Stack**
+Execute o comando:
+```
+stk list plugin
+```
+- Você pode aplicar esse Plugin utilizando o comando  [<ins>**`stk apply plugin`**</ins>]({{< ref path="/docs/References/Commands List/stk-apply-plugin.md" >}}).
+
+<alert color="warning" >
+
+Você pode adicionar os Plugins/Templates criados dessa forma em outras Stacks. Se eles forem alterados, automaticamente as mudanças são refletidas em qualquer um deles, independente da Stack que estiverem.
+</alert>
+

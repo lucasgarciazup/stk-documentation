@@ -1,0 +1,54 @@
+---
+title: stk create template
+weight: 11
+description: Nesta seção, você encontra mais informações sobre o comando 'stk create template'.
+---
+
+
+O comando **`stk create template`** cria a estrutura de um template de stack. Essa estrutura contém os arquivos necessários para criar um template.
+
+Esse template será usado no **`stk create app`**, no **`stk create env`** ou em ambos os comandos.
+
+### **Como funciona?**
+Para acessar o comando, utilize **`stk create template [NAME] [OPTIONS]`**
+
+Ao rodar o comando no terminal dentro da pasta de uma stack, uma sub-pasta é gerada com a estrutura para criar o template.
+O usuário deve editar o arquivo **`template.yaml`** e configurar os parâmetros de entrada do template.
+
+### **Criar templates em repositórios separados**
+Caso queira criar um template separado de uma stack para poder ser usado em mais de uma stack, é preciso rodar o comando no terminal fora da uma pasta de uma stack. Depois disso, uma pasta é gerada com a estrutura para criar o template.
+> Esta pasta será inicializada como um repositório Git.
+
+O usuário deve editar o arquivo **`template.yaml`** e configurar os parâmetros de entrada do template.
+
+### **Parâmetros**
+Confira a opção disponível no comando:
+
+
+| Parâmetro | Descrição                                                                                                                                                                                                                                                                                                                  |
+| ----------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `NAME` | Define o nome do template criado. Se o nome não for informado, é definido o nome do repositório do parâmetro `--remote`.                                                                                                                                                                                                   |
+| `--description` | É o texto que descreve o template e a sua finalidade. Esta descrição também será exibida no comando `os list template` para que o usuário saiba sobre o template.                                                                                                                                                          |
+| `--types ` | Define os tipos do template. O template pode ser aplicado nos comandos `os create app`, `os create env` ou nos dois. Se for aplicado nesta última, os valores para isso são:  `app-template` e `env-template`. Para definir mais de um tipo de template, use uma vírgula.                                                  |
+| `--remote` | É um parâmetro que define a url remota do repositório Git, que será usada como *origin* para o template. Se o usuário não informar o remote, será preciso executar o `git add remote` para poder publicar o template no Git. Ele deve ser usado somente em casos que estejam usando repositórios separados para templates. |
+| `--deploy` | Adiciona uma seção de ciclo de vida no `plugin.yaml`, onde você pode definir os comandos executados pelo `os deploy` do CLI.                                                                                                                                                                                               |
+
+## **Exemplos**
+### **Exemplo de template**
+
+![](/v3.0.0/stkgifs/stk-create-template.gif)
+
+### **Exemplo de criação de um template env**
+![](/v3.0.0/stkgifs/stk-create-template-env.gif)
+
+
+### **Exemplo de criação de um template app**
+![](/v3.0.0/stkgifs/stk-create-template-app.gif)
+
+
+### **Veja Também**
+- [<ins>**stk delete template**</ins>]({{< ref path="/stk-delete-template.md" >}})
+- [<ins>**stk list template**</ins>]({{< ref path="/stk-list-template.md" >}})
+- [<ins>**stk add template**</ins>]({{< ref path="/stk-add-template.md" >}})
+
+

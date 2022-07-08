@@ -1,0 +1,28 @@
+---
+title: 3.2.0
+weight: 103
+description: >-
+  Nesta seção, você encontra as Release Notes da versão 3.2.0 do STK CLI.
+---
+
+# **O que há de novo?**
+A nova versão traz novas atualizações como instalação online e autoproxy. 
+
+## **Features**
+- **Novo comando:** 
+    - [**`stk upgrade`**]({{< ref path="/docs/References/Commands List/stk-upgrade.md" >}}).
+
+## **Mudanças**
+- Melhorias de performance com a remoção do PyInstaller.
+
+## **Resolução de problemas (Bug Fixes)**
+- Ajustes no **`--help`** dos comandos de delete: 
+    - [**`stk delete plugin`**]({{< ref path="/docs/References/Commands List/stk-delete-plugin.md" >}})
+    - [**`stk delete template`**]({{< ref path="/docs/References/Commands List/stk-delete-template.md" >}}) 
+    - [**`stk delete stack`**]({{< ref path="/docs/References/Commands List/stk-delete-stack.md" >}}).
+- Ajustes no texto da flag **`--stackfile`** nos comandos:
+    - [**`stk create app`**]({{< ref path="/docs/References/Commands List/stk-create-app.md" >}}) 
+    - [**`stk create env`**]({{< ref path="/docs/References/Commands List/stk-create-env.md" >}}).
+- Correção de erro no processamento do **`--stackfile`**.
+- Correção nos comandos de **`stk delete`** para criação de commits de repositório separados e nos testes integrados. 
+- Correção do charset/encoding do `stkcli` no Windows (cmd e Git Bash). 

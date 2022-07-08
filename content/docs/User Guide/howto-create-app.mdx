@@ -1,0 +1,148 @@
+---
+title: Como Criar uma Aplicação
+weight: 3
+description: >-
+  Nesta seção, você encontra um exemplo de como usar o STK CLI para criar uma aplicação.
+---
+
+---
+Siga os passos abaixo para criar uma aplicação de **hello-stacker**. Esses são os mesmo passos para criar uma [<ins>**aplicação**</ins>]({{< ref path="/glossary.md#aplicação-app" >}}) real. 
+
+## **Passo 1. Instalar o STK CLI**  
+
+<a href="https://www.stackspot.com/download" target="_blank"><ins><strong>Instale o STK CLI</strong></ins></a> de acordo com sistema operacional que você utiliza. Escolha uma das opções abaixo:
+
+- [<ins>**Windows**</ins>]({{< ref path="/Windows.md" >}})
+- [<ins>**MacOS**</ins>]({{< ref path="/Macos.md" >}})
+- [<ins>**Linux**</ins>]({{< ref path="/Linux.md" >}})
+
+
+## **Passo 2. Adicionar uma Stack**
+
+<alert color="warning" >
+Se você já tem uma [<ins>**das stacks disponíveis**</ins>](https://stackspot.com/studios) instaladas na sua máquina e deseja usar uma delas para criar essa aplicação, pule para o **Passo 3**.
+</alert> 
+
+Para criar uma aplicação você precisa de uma Stack como modelo. Adicione uma Stack utilizando o seguinte comando:
+
+```
+stk import stack <URL_DA_STACK_NO_GIT>
+```
+Neste exemplo, foi utilizada a Stack **`hello-stacker`**. Para adicionar a Stack, use o link abaixo:
+
+```
+stk import stack https://github.com/stack-spot/stack-hello-stacker
+```
+
+
+<alert color="warning" >
+Se você utilizou o link acima para adicionar uma Stack e ocorreu algum erro, execute os comandos, um de cada vez no seu terminal: 
+
+```
+git config --global http.sslverify false
+```
+```
+git config --global https.sslverify false
+```
+ </alert> 
+
+
+> Para encontrar uma Stack e a URL para utilizar neste comando, acesse o [<ins>**portal dos estúdios**</ins>](https://stackspot.com.br/studios) onde estão as Stacks disponíveis na StackSpot.
+
+## **Passo 3. Consultar os Stackfiles disponíveis**
+
+Uma Stack pode ter mais de um [<ins>**stackfile**</ins>]({{< ref path="/glossary.md#stackfiles" >}}), que serve como base de uma aplicação.
+Consulte os Stackfiles disponíveis em cada Stack, para isso execute o comando: 
+```
+stk list stackfile
+```
+Guarde o nome do Stackfile que deseja usar, pois você o usará no próximo passo.
+
+
+## **Passo 4.** Criar uma aplicação
+
+Agora você já pode criar um projeto de aplicação, execute o comando abaixo:
+
+```
+stk create app myApp --stackfile <NOME_DA_STACK/NOME_DO_STACKFILE>
+```
+
+No exemplo da **`hello-stacker`**:
+```
+stk create app helloStacker --stackfile stack-hello-stacker/default
+```
+
+O stackfile do projeto pede para você escolher qual mensagem gostaria de utilizar para saudar o usuário. Utilize as setas do teclado para selecionar a melhor opção e aperte a tecla **`Enter`** para confirmar e avançar.
+
+Para mais informações sobre os parâmetros disponíveis, execute o comando **`--help`** ou acesse a [<ins>**seção sobre o comando stk create app**</ins>]({{< ref path="/stk-create-app.md" >}}).
+
+## **Passo 5. Abrir aplicação**
+
+<alert color="warning" >
+As instruções deste passo se aplicam exclusivamente para o exemplo do hello-stacker.
+</alert>
+
+Navegue para a pasta criada do seu projeto, no caso deste exemplo é:
+```
+cd helloStacker
+```
+
+Abra no seu browser, o arquivo **`index.html`**. Você também pode abrir pelo terminal usando o browser default:
+- Windows:
+  ```
+  start index.html
+  ```
+- MacOS:
+  ```
+  open index.html
+  ```
+
+- Linux (depende do pacote xdg-utils):
+  ```
+  xdg-open index.html
+  ```
+
+## **Passo 6. Escolher um Plugin**
+Para adicionar mais funcionalidades ao projeto, você pode aplicar [<ins>**plugins**</ins>]({{< ref path="/glossary.md#plugin" >}}).
+
+Para ver quais são os Plugins disponíveis na sua máquina, com os seus respectivos atributos agrupados por Stack, execute o comando:
+
+````
+stk list plugin
+````
+
+
+Confira um exemplo abaixo:  
+
+![](/v3.0.0/stkgifs/stk-list-plugin.gif)
+
+
+## **Passo 7. Aplicar o Plugin**  
+Agora, você pode aplicar uma funcionalidade no seu projeto.
+Execute o seguinte comando dentro do diretório da aplicação:  
+```
+stk apply plugin <NOME_DA_STACK/NOME_DO_PLUGIN>
+```
+No caso do **`hello-stacker`**, a proposta é melhorar a aplicação para que a mesma saiba o nome do usuário ao visitar a página.
+
+Assim dentro da pasta do projeto, utiliza-se o comando abaixo:
+
+```
+stk apply plugin stack-hello-stacker/plugin-hello-stacker
+```
+
+>Você acaba de concluir a jornada para criar uma aplicação e adicionar uma funcionalidade. Para ver o resultado final utilize as instruções do **`Passo 5`** novamente.
+
+Lembre-se que os passos que você fez, utilizaram o Stackfile default, por isso foi necessário aplicar um Plugin para ter mais funcionalidades. 
+Se você já tivesse utilizado o Stackfile **`hello-stacker-ask-name`** essa etapa não seria necessária, pois o Plugin já teria sido aplicado.
+
+<alert color="secondary">
+Se você executar o comando **`stk apply plugin`** na pasta de um projeto que não tenha sido criado por meio de uma Stack (um projeto legado, por exemplo), o comando pedirá a sua autorização antes de aplicar o Plugin. Para mais informações, confira a seção [<ins>**Aplicar Plugin em projeto legado**</ins>]({{< ref path="/howto-apply-plugin-proj-legado.md" >}}).
+</alert>
+
+## **Próximos Passos**
+
+- A StackSpot tem estúdios com stacks disponíveis pra você começar a utilizar agora! 
+Acesse o portal [<ins>**StackSpot**</ins>](https://www.stackspot.com.br/studios), escolha o seu estúdio e veja tudo o que você pode fazer com cada Stack. 
+
+- Para entender melhor todos os conceitos da StackSpot, confira na seção [<ins>**Glossário**</ins>]({{< ref path="/glossary.md" >}}) todos os detalhes. 

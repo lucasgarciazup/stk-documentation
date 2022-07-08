@@ -1,0 +1,275 @@
+---
+title: Configurar arquivos .yaml
+weight: 7
+description: >-
+  Nesta seção, você encontra detalhes de como configurar arquivos yaml.
+---
+
+---
+
+### **O que são os arquivos .yaml?**
+
+Os arquivos **template.yaml** e **plugin.yaml** são utilizados para configurar tanto os **Templates** quanto os **Plugins**.
+Neles estão algumas informações usadas para:
+
+1. Exibir as informações dos Templates/Plugins para o usuário.
+2. Configurações das entradas esperadas pelo Template/Plugin.
+3. Comandos a serem executados pelo comando [**`stk deploy`**]({{< ref path="/stk-deploy.md" >}}) do CLI.
+
+### **Exemplos de arquivos .yaml**
+
+<tabs name="T0">
+
+<tab title="template.yaml">
+
+```
+name: my-template
+description: Describe your template explaining its purpose
+types:
+  - app
+  - env
+inputs:
+  - label: Input Example
+    type: text
+    name: example
+    default: any text
+    required: true
+```
+</tab>
+
+<tab title="plugin.yaml">
+
+```
+name: my-plugin
+description: Describe your plugin explaining its purpose
+types:
+  - app
+  - env
+display-name: Plugin name
+picture: "plugin.png"
+category: Category
+compatibility:
+  - String
+about: docs/about.md
+usage: docs/usage.md
+use-case: docs/useCase.md
+implementation: docs/implementation.md
+technologies: ["Api"] # Ref: https://docs.stackspot.com/latest/docs/creators-guide/yaml/#technologies
+inputs:
+  - label: Input Example
+    type: text
+    name: example
+    default: any text
+    required: true
+  - label: Input Folder Name
+    type: text
+    name: folder_name
+    default: folder_example
+    required: true
+    pattern: '[a-zA-Z0-9](\w|-)*$'
+  - label: Example of list
+    type: multiselect
+    name: any_list
+    items:
+      - item1
+      - item2
+    condition:
+      variable: example
+      operator: “==”
+	value: xpto
+lifecycle:
+  deploy:
+    supported-os:
+      - windows
+      - linux
+      - mac
+    requirements-check:
+      dependency-example:
+        check-command: some-command --help
+        info : some-command is not installed
+      other-dependency-example:
+        check-command:
+          windows: cmd -c scripts\verify-dependency.bat
+          linux: sh scripts/verify-dependency.sh
+          mac: sh scripts/verify-dependency.sh
+        info: other dependency is not installed
+    deploy-command: npx cdk deploy ${stage} 
+```
+</tab>
+
+<tab title="stack.yaml">
+
+```
+description: Describe your stack explaining its purpose
+name: stack-name
+display-name: Stack API
+picture: "stack.png"
+category: Backend # Ref: https://docs.stackspot.com/latest/docs/creators-guide/yaml/#category
+compatibility:
+  - String
+technologies: ["Docker"] # Ref: https://docs.stackspot.com/latest/docs/creators-guide/yaml/#technologies
+about: docs/about.md
+use-cases:
+  - title: User Case Title
+    content: docs/useCase.md
+    stackfile: stackfiles/default.yaml
+```
+</tab>
+
+</tabs>
+
+<alert color="danger">
+
+Quando você usar o tipo **`int`** no campo **`type`**, é necessário ajustar um dos dois campos abaixo: 
+1. **`default`**: Colocar um valor associado.
+2. **`Required`** Precisa ser **`true`**. 
+
+Veja o exemplo abaixo: 
+```
+name: my-template
+description: Describe your template explaining its purpose
+types:
+  - app
+  - env
+inputs:
+  - label: Input Example
+    type: int
+    name: example
+    default: 1 
+    required: true
+```
+</alert>
+
+## **Atributos Mandatórios**
+
+### **name**
+String que define o nome do Plugin, Template ou Stack. Esta informação define o identificador do Plugin que é usado na sua aplicação.
+
+### **description**
+String que descreve o propósito do Plugin, Template ou Stack, e deve conter informações que sejam relevantes para serem exibidas para os consumidores nos comandos **`stk list plugin`**, **`stk list template`**, e **`stk list stack`**.
+
+### **types**
+- Lista de strings que define os tipos do Plugin/Template.
+- Para **template.yaml**: Os valores válidos são **env-template** e **app-template**, indicando se o Template pode ser usado no [<ins>**`stk create env`**</ins>]({{< ref path="/docs/References/Commands List/stk-create-env.md" >}}), [<ins>**`stk create app`**</ins>]({{< ref path="/docs/References/Commands List/stk-create-app.md" >}}) ou nos dois.
+- Para **plugin.yaml**: Os valores válidos são **`app`** e **`env`**, indicando se o plugin pode ser aplicado sobre um Template do tipo **`app-template`**, **`env-template`** ou os dois.
+
+
+### **Atributos opcionais**
+
+### **display-name**
+String que define o nome do Plugin que será apresentado no portal de studios, Template ou Stack.
+
+### **picture**
+String que define o nome do arquivo de imagem que será exibida no Portal de studios. Este arquivo precisa estar dentro do repositório.
+
+### **category**
+String que define o a categoria do Plugin ou Stack. Para Plugins, qualquer categoria pode ser informada. Mas para Stacks, é obrigatório usar uma das categorias abaixo:  
+
+- Analytics;  
+- Backend;  
+- Frontend;  
+- Full Stack;  
+- SRE;  
+
+### **compatibility**
+Lista de String que define o termos, tecnologias ou aplicações compatíveis.
+
+### **about**
+Caminho para um arquivo markdown presente dentro do repostório que detalha a Stack ou Plugin.
+
+### **usage**
+Caminho para um arquivo markdown presente dentro do repositório que detalha o uso da Stack ou Plugin.
+
+### **use-case**
+Caminho para um arquivo markdown presente dentro do repostório que detalha um caso de uso da Stack.
+
+### **use-cases**
+Lista de casos de uso da Stack.
+
+### **use-cases.title**
+String com o título de um caso de uso.
+
+### **use-cases.content**
+Caminho para um arquivo markdown presente dentro do repostório que detalha o caso de uso.
+
+### **use-cases.stackfile**
+Caminho para um arquivo Stackfile presente dentro do repositório relacionado ao caso de uso.
+
+### **implementation**
+Caminho para um arquivo markdown presente dentro do repositório que detalha a implementação da Stack.
+
+
+
+### **inputs**
+
+Lista de objetos contendo a especificação das entradas esperadas pelo plugin/Template.
+- **Global inputs**: Quando um Template possuir um input com a flag **`global:true`**, todos os Plugins aplicados em seguida, e que possuírem inputs com o mesmo nome, usarão o valor informado no primeiro input.
+- Os atributos válidos de um input são:
+  - **label**: String que será exibida para o usuário ao ser questionado pelo valor do input.
+  - **type**: Tipo de valor esperado. Os valores permitidos são: **`text`**, **`int`**, **`bool`** ou **`multiselect`**.  
+    - Se você precisa permitir a seleção de apenas um item de uma lista, use o type **`text`** junto com o campo **`items`**.
+    - Se você precisa permitir a seleção de vários items de uma lista, utilize o type **`multiselect`** junto com o campo **`items`**.
+      
+  - **name**: Nome da variável a ser gerada na lista de valores dos inputs que os templates jinja podem acessar. O valor definido para o input pode ser acessado no template jinja através da expressão {{inputs.name}}, na qual o name é o nome definido neste atributo.
+  - **default**: Valor default assumido pelo input quando apresentado para o usuário.
+  - **required**: Boolean indicando se o valor é obrigatório ou não. Os valores permitidos são: **`true`** ou **`false`**.
+  - **items**: Lista de itens disponíveis para escolha do usuário quando o tipo do input é multiselect. Caso o tipo do input seja text, irá gerar uma lista de seleção única.
+  - **pattern**: Regex para definir uma validação para campos do tipo text. Deve ser passado com aspas simples para não ocorrer erros de leitura, visto que o conteúdo do regex pode conter elementos com escape.
+  - **condition**: Objeto que define uma condição para que o input seja exibido para o usuário. Caso a condição retorne true, o input será exibido para o usuário, caso contrário não será exibido. Os atributos de uma condition são:
+      - **variable**: Nome da variável que será usada para avaliar a condição.
+      - **operator**: Operador usado para avaliar a condição. Os valores de operadores válidos são: **`==`**, **`!=`**, **`>`**, **`>=`**, **`<`**, **`<=`**, **`containsAny`**, **`containsAll`**, **`containsOnly`**, **`notContainsAny`** e **`notContainsAll`**.
+      - **value**: Valor usado para a avaliação.
+  - **text**: Input de text que espera uma string. 
+  - **bool**: É um input que requer um valor booleano.
+  
+- **Computed Inputs**: Recurso usado para facilitar a criação de Templates, podendo usar regras complexas. Por meio do **`computed-inputs`**, você pode criar inputs com base em outros inputs e também pode ser usado no Template/Plugin que está sendo aplicado no momento. 
+Para utilizar **`computed-inputs`**, basta adicionar no seu arquivo **`template.yml`** ou **`plugin.yml`** a seguinte configuração:
+
+  ```yaml
+  computed-inputs:
+    project_name_formatted: "{{inputs.project_name|to_kebab}}"
+   ```
+- **Global Computed Inputs**: Recurso que permite o uso de **`computed inputs`** de maneira global. Logo após a definição é possível utilizar esse input nos plugins subsequentes definidos pelo **`global-computed-inputs`**. 
+Os plugins aplicados em seguida terão acesso ao valor do **`global-computed-inputs`**. 
+
+Para utilizar **`global-computed-inputs`**, adicione no seu arquivo **`template.yml`** ou **`plugin.yml`** a seguinte configuração:
+
+  ```yaml
+  global-computed-inputs:
+    project_name_formatted: "{{inputs.project_name|to_kebab}}"
+  ```
+
+### **technologies**
+Lista de strings das tecnologias relacionadas à **Stack** ou ao **Plugin**.
+
+As tecnologias permitidas para o uso são:
+
+- .NET
+- Apache Spark
+- Api
+- AWS DynamoDB
+- AWS ECS/Fargate
+- AWS EventBridge
+- AWS Glue
+- AWS Kinesis
+- AWS Lake Formation
+- AWS Lambda
+- AWS S3
+- AWS SNS
+- AWS SQS
+- C#
+- Docker
+- Jaeger
+- Java
+- Kotlin
+- Observability
+- OpenAPI
+- Parquet
+- Prometheus
+- Python
+- Queue
+- Rest
+- Secrets
+- Splunk
+- Springboot
+- Typescript

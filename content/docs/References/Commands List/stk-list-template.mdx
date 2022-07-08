@@ -1,0 +1,34 @@
+---
+title: stk list template
+weight: 13
+description: Nesta seção, você encontra mais informações sobre o comando 'stk list template'.
+---
+
+
+O comando **`stk list template`** retorna uma lista de todos os templates disponíveis nas aplicações do usuário. Com isso, os templates podem ser usados para criar stacks de aplicação ou de ambiente.
+
+### **Como funciona?**
+O comando **`stk list template`** pode ser executado de duas formas:
+
+1. Se for executado dentro de um app, ele listará só os templates do tipo **`app-template`**;
+2. Caso for dentro de um env, ele listará somente os templates do tipo **`env-template`**.
+
+
+### **Parâmetros**
+Confira a opção disponível no comando:
+
+| Parâmetro | Descrição |
+| ----------- | ----------- |
+| `STACK` | Define o nome da stack. Usado para listar somente os templates dessa stack. |
+| ` --app` | Lista apenas templates do tipo `app-template`, criados com o comando `os create app`. |
+| ` --env` | Lista apenas templates do tipo `env-template`, criados com o comando `os create env`. |
+
+### **Exemplo**
+Veja um exemplo abaixo:
+
+![](/v3.0.0/stkgifs/stk-list-template.gif)
+
+### **Veja Também**
+- [<ins>**stk create template**</ins>]({{< ref path="/stk-create-template.md" >}})
+- [<ins>**stk delete template**</ins>]({{< ref path="/stk-delete-template.md" >}})
+- [<ins>**stk add template**</ins>]({{< ref path="/stk-add-template.md" >}})

@@ -1,0 +1,74 @@
+---
+title: MacOS
+weight: 2
+description: 'Nesta seção, você encontra como instalar o STK CLI para MacOS.'
+---
+
+---
+
+Para instalar a **última versão do STK CLI**, você precisa fazer o **download do instalador** e executá-lo no seu terminal.
+
+### **Versões Homologadas**
+O StackSpot CLI foi homologado para funcionar nas seguintes versões do MacOS:
+- MacOS 12 (Monterey) 
+- MacOS 11 (Big Sur)
+
+Não há requisitos de instalação para outras versões, mas a compatibilidade do StackSpot CLI pode não ser total.
+
+### **Requisitos**
+Veja abaixo os requisitos para usar o STK CLI:
+- <a href="https://git-scm.com/downloads" target="_blank"><strong><ins>Instalar o Git - a partir da versão 2.32.</ins></strong></a>
+- [<ins>**Z shell (zsh)**</ins>](https://support.apple.com/en-us/HT208050): execute o comando ``chsh -s /bin/zsh`` no terminal para habilitar o zsh 
+- Manter o [<ins>**Xcode Developer Tool** atualizado</ins>]({{< ref path="/docs/STK CLI/troubleshooting.md" >}}).
+
+### **Passo a passo de Instalação**  
+
+##### **Passo 1:** Faça o download do instalador
+
+> **Acesse a seguinte URL:** <ins>**www.stackspot.com/download**</ins>  
+
+##### **Passo 2.** Abra o terminal e siga as instruções abaixo:
+
+**1.** Acesse o diretório onde o instalador foi baixado;  
+**2.** Execute o seguinte comando:
+
+```
+installer -pkg stk.pkg -target CurrentUserHomeDirectory
+```
+
+<alert color="warning" >
+O valor após `-target` é **`CurrentUserHomeDirectory`**, não é necessário nenhuma substituição.
+</alert>
+
+##### **Passo 3.** Reinicie o terminal após a instalação, isso garante que o comando **`stk`** seja reconhecido.
+
+<alert color="warning">
+É necessário finalizar o processo do terminal antes de reiniciá-lo. Para isso use `Command + Q` e em seguida abra o terminal novamente.
+</alert>
+
+No terminal execute o comando:
+```
+stk –-version
+```
+Se tudo estiver configurado, o terminal retorna o número da versão atual do STK CLI.
+
+##### **Passo 4:** Execute o comando abaixo com para concluir a inicialização do STK CLI:
+
+```text
+stk init
+```
+
+### **Passo a passo de Desinstalação**   
+
+##### **Passo 1.** Entre no terminal.
+
+Agora, execute o seguinte comando:
+```
+sh ~/.stk/bin/uninstall.sh
+```
+
+Uma mensagem aparecerá para confirmar a desinstalação antes que ela se inicie.
+
+## **Próximos passos**
+
+Agora você pode começar a usar o STK CLI, veja a seção [<ins>**Como Criar uma Aplicação**</ins>]({{< ref path="/docs/User Guide/howto-create-app.md" >}}).

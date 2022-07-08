@@ -1,0 +1,50 @@
+---
+title: Desinstalar a versão atual
+weight: 7
+description: 'Nesta seção, você encontra como desinstalar o STK CLI.'
+---
+
+Veja abaixo como desinstalar a versão atual do STK CLI:
+
+### **Windows**
+Siga os passos abaixo:
+
+**Passo 1.** Acesse o **Painel de controle** do seu computador;
+
+**Passo 2.** Clique em **'Programas'** e logo depois **'Desinstalar um programa'**;
+
+**Passo 3.** Selecione **stkcli** e faça o processo para desinstalar. 
+
+### **MacOS**
+
+**Passo 1.** Execute o script abaixo no seu terminal:
+
+```
+/Users/USER_HOME/.stk/bin/uninstall.sh
+```
+
+**Passo 2.** Remova as linhas referentes ao PATH do binário e a ao complete, caso sejam **`.bashrc`** ou **`.zshrc`**. Veja abaixo um exemplo de como são: 
+
+```
+export PATH=$HOME/.stk/bin:$PATH
+eval "$(_STK_COMPLETE=zsh_source stk)"
+```
+
+**Passo 3.**  Remova a pasta **/Library/stk** no root da máquina assim como a pasta **USER_HOME/Library/stk**. 
+
+### **Linux**
+
+**Passo 1.** Remova as linhas referentes ao PATH do binário e a ao complete, caso sejam **`.bashrc`** ou **`.zshrc`**. Veja abaixo um exemplo de como são: 
+
+```
+export PATH=$HOME/.stk/bin:$PATH
+eval "$(_STK_COMPLETE=zsh_source stk)"
+```
+<alert color="secondary">
+Se você instalou via  **`.deb`** ou  **`.rpm `**, remova o binário da pasta **/usr/local/bin** no root da sua máquina.
+</alert>
+
+
+<alert color="warning">
+Depois de desinstalar a versão do CLI, confira se as pastas `.os` ou `.stk` ainda estão na suam `$HOME`. Caso sim, delete essa pasta para finalizar a desinstalação.
+</alert>
