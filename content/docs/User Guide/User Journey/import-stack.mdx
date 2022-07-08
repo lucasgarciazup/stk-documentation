@@ -1,0 +1,36 @@
+---
+title: Importar uma Stack
+weight: 4
+description: >-
+  Nesta seção, você encontra detalhes sobre importar uma stack para uso.
+---
+
+---
+
+## **O que é uma Stack?**
+
+Uma stack é o conjunto de templates, plugins e stackfiles usados para criar um projeto. Essas Stacks são criadas por uma organização e disponibilizadas em um Estúdio para uso. 
+
+Para mais informações sobre Stacks, leia o [**<ins>Glossário</ins>**]({{< ref path="/glossary.md#stack" >}}).
+
+## **Como importar uma Stack?**
+
+O primeiro passo para criar um projeto é importar uma stack via o STK CLI, e a URL da stack. Para isso visite o [**<ins>portal de estúdios</ins>**](https://stackspot.com/studios) e veja quais stacks estão disponíveis.
+
+### **Passo 1. Importar a Stack**
+
+Rode o comando:
+```
+stk import stack <URL-DA-STACK>
+```
+### **Passo 2. Verificar se a Stack foi importada**
+
+Para saber se você conseguiu importar a Stack corretamente, ela deve aparecer disponível para uso. Para verificar o sucesso da importação, rode:
+
+```
+stk list stack
+```
+Se a Stack que você tentou importar for exibida após executar o comando, você já pode usá-la para criar o seu projeto
+
+### **Próximo passo**
+Agora que a Stack está disponível, você já pode criar o seu projeto. Para mais informações, leia a página [**Criar um Projeto**]({{< ref path="/create-project.md" >}}).

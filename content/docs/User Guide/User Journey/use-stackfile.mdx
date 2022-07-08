@@ -1,0 +1,41 @@
+---
+title: Usar um Stackfile
+weight: 7
+description: >-
+  Nesta seção, você encontra detalhes sobre Stackfiles e como usá-los.
+---
+
+---
+
+## **O que é um Stackfile?**
+
+Stackfile pode ser entendido como uma "receita pronta", porque as especificações de um Template e um conjunto de Plugins já são predefinidas e aplicadas apenas quando você utiliza o comando **`stk create app`**. Isto é, você pode criar um projeto já com Plugins através de um único comando.
+
+Para mais detalhes sobre Stackfiles, leia o [**<ins>Glossário</ins>**]({{< ref path="/glossary.md#stackfiles" >}}).
+
+## **Como usar um Stackfile?**
+Para usar um Stackfile é necessário importar uma Stack primeiro. Para informações de como fazer isso, leia a página [**<ins>Importar stack</ins>**]({{< ref path="/import-stack.md" >}})
+
+### **Passo 1. Ver Stackfiles disponíveis**
+Para ver quais Stackfiles estão disponíveis na Stack que você importou, rode o comando:
+```
+stk list stackfile
+```
+
+### **Passo 2. Usar o Stackfile**
+Escolha o Stackfile que você quer usar, e rode o comando:
+```
+stk create app <NOME-DO-PROJETO> -s <NOME-DA-STACK/NOME-DO-STACKFILE>
+```
+
+### **Passo 3. Confirme a criação do seu projeto**
+Para confirmar que a criação do seu projeto foi bem sucedida, rode o comando:
+```
+cd <NOME-DO-SEU-PROJETO>
+```
+Você pode ver o conteúdo da pasta do projeto que você acabou de criar. 
+
+É **opcional**, mas se você deseja ver a hierarquia de pastas e arquivos, rode o comando abaixo:
+```
+tree -a
+```
