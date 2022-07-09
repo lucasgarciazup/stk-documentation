@@ -2,11 +2,13 @@ import React from 'react';
 import MdxRoutes from '../MdxRoutes';
 import MenuTree from '../MenuTree';
 
-// import { Container } from './styles';
+interface Props {
+  location: Location
+}
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC<Props> = ({ location }) => {
   return (
-    <MdxRoutes>{(_, menus) => <MenuTree menus={menus}/>}</MdxRoutes>
+    <MdxRoutes>{(_, menus) => <MenuTree menus={menus} location={location}/>}</MdxRoutes>
   );
 }
 

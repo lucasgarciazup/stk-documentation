@@ -1,14 +1,24 @@
 import React from 'react';
-import { Text, Link as LinkCitric, Box, Flex, IconBox } from '@citric/core';
+import { Text, Flex, IconBox } from '@citric/core';
 import { Link, withPrefix, } from 'gatsby';
 import { Menu } from '../../types/routes.interface';
-import { ArrowDown, ChevronDown, ChevronUp } from '@citric/icons/dist';
-import { useLocation } from 'react-router-dom';
+import { ChevronDown  } from '@citric/icons/dist';
 
 interface Props {
   menus: Menu[]
+  location: Location
 }
+
 const sx = {
+  li: {
+    '&:not(.collapsed) ul': {
+      display: 'none',
+      transition: 'opacity 0.5s linear'
+    },
+    '&.collapsed a[aria-expanded="true"] i': {
+      transform: 'rotate(180deg)'
+    }
+  },
   link: {
     mb: 5,
     color: 'light.contrastText',
@@ -24,21 +34,9 @@ const sx = {
       color: 'primary'
     }
   },
-  li: {
-    '&:not(.collapsed) ul': {
-      display: 'none',
-      transition: 'opacity 0.5s linear'
-    },
-    '&:not(.collapsed) a[aria-expanded="true"] i': {
-      transform: 'rotate(180deg)'
-    },
-    '&.collapsed a[aria-expanded="true"] i': {
-      transform: 'rotate(180deg)'
-    }
-  },
 }
-const MenuTree: React.FC<Props> = ({ menus }) => {
-  const currentPage = (slug: string) => window.location ? window.location.pathname.includes(slug.toLowerCase()) : false
+const MenuTree: React.FC<Props> = ({ menus, location }) => {
+  const currentPage = (slug: string) => location.pathname.includes(slug.toLowerCase())
   const classCollapse = (slug: string) => currentPage(slug) ? 'collapsed' : ''
   const createTree = (menus: Menu[]) => {
     return (

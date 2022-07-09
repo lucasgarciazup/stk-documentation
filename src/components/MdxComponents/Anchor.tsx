@@ -1,14 +1,13 @@
-import { Link, Text } from '@citric/core';
-
 import React from 'react';
+import { Link } from '@citric/core';
 
-// import { Container } from './styles';
 interface Props {
     href: string,
     children: string
 }
 
 const Anchor: React.FC<Props> = (props) => {
+  const decoded = decodeURI(props.href)
   return (
     <Link colorScheme="primary" {...props} />
   );

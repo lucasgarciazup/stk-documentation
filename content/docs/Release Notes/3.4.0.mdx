@@ -9,20 +9,20 @@ description: >-
 A nova versão permite o criador migrar plugins de repositórios separados para dentro do repositório de uma stack (conversão de submódulos para Monorepo).
  
 ## **Features**
-- Novos campos nos arquivos [**<ins>stack.yaml</ins>**]({{< ref path="/docs/Creators Guide/Configuration/yaml.md" >}}) e [**<ins>plugin.yaml</ins>**]({{< ref path="/docs/Creators Guide/Configuration/yaml.md" >}}) para indexação do Portal de Estúdios. 
-- Novo recurso para permitir [**<ins>computed inputs globais</ins>**]({{< ref path="/docs/Creators Guide/Configuration/yaml.md" >}}).
+- Novos campos nos arquivos [**<ins>stack.yaml</ins>**]({{< ref path="/docs/Creators Guide/Configuration/yaml.mdx" >}}) e [**<ins>plugin.yaml</ins>**]({{< ref path="/docs/Creators Guide/Configuration/yaml.mdx" >}}) para indexação do Portal de Estúdios. 
+- Novo recurso para permitir [**<ins>computed inputs globais</ins>**]({{< ref path="/docs/Creators Guide/Configuration/yaml.mdx" >}}).
 - Recurso para enviar métricas represadas caso você estiver offline, serão enviadas quando a sua conexão retornar.  
 
 ## **Mudanças**
 - Inclusão do arquivo **`.gitignore`** quando o STK CLI usar o **`git init`**.
-- Exibição do nome do plugin aplicado após o comando [**`stk apply plugin`**]({{< ref path="/docs/References/Commands List/stk-apply-plugin.md" >}}) e também na criação de um app utilizando [<ins>**stackfile**</ins>]({{< ref path="/docs/glossary.md" >}}) que aplica vários plugins. 
-- Melhoria no mecanismo dos [**<ins>Hooks</ins>**]({{< ref path="/docs/Creators Guide/Configuration/howto-use-hooks.md" >}}). Agora são permitidas condições quando o Hook é executado ou não, além de adicionar a condição **`not-exists-snippet`** nas cláusulas **`when`**.
+- Exibição do nome do plugin aplicado após o comando [**`stk apply plugin`**]({{< ref path="/docs/References/Commands List/stk-apply-plugin.mdx" >}}) e também na criação de um app utilizando [<ins>**stackfile**</ins>]({{< ref path="/docs/glossary.mdx" >}}) que aplica vários plugins. 
+- Melhoria no mecanismo dos [**<ins>Hooks</ins>**]({{< ref path="/docs/Creators Guide/Configuration/howto-use-hooks.mdx" >}}). Agora são permitidas condições quando o Hook é executado ou não, além de adicionar a condição **`not-exists-snippet`** nas cláusulas **`when`**.
 - Melhoria no autocomplete (Sugestão de stackfiles, plugins e templates).
 
 ## **Resolução de problemas (Bug Fixes)**
 - Correção do erro em aplicações de plugin via stackfile quando o usuário cancela o processo. 
-- Correção dos erros no [**<ins>instalador do Windows</ins>**]({{< ref path="/docs/STK CLI/Installation/Windows.md" >}}): erro ao voltar os passos na instalação e rejeição em algumas instalações.
-- Correção do comportamento que criava o arquivo **`.template/inputs.json`** da [<ins>**criação de apps**</ins>]({{< ref path="/docs/User Guide/howto-create-app.md" >}}).
+- Correção dos erros no [**<ins>instalador do Windows</ins>**]({{< ref path="/docs/STK CLI/Installation/Windows.mdx" >}}): erro ao voltar os passos na instalação e rejeição em algumas instalações.
+- Correção do comportamento que criava o arquivo **`.template/inputs.json`** da [<ins>**criação de apps**</ins>]({{< ref path="/docs/User Guide/howto-create-app.mdx" >}}).
 
 
 

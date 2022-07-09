@@ -20,25 +20,32 @@ Para facilitar sua compreensão, acompanhe a evolução do diagrama abaixo, que 
 ## **Comandos relacionados ao Template**
 <tabs name="T1">
 <tab title="1. Criar novos Templates" >
+
 ```
 stk create template
 ```
+
 </tab>
 <tab title="2. Adicionar Templates às stack já criadas" >
+
 ```
 stk add template <template-repo-url> ou <path-para-pasta-do-template> 
 ```
+
 </tab>
 <tab title="3. Listar Templates disponíveis" >
+
 ```
 stk list template
 ```
 </tab>
 
 <tab title="4. Remover Templates dentro de um projeto" >
+
 ```
 stk delete template my-template
 ```
+
 </tab>
 </tabs>
 
@@ -48,7 +55,7 @@ Existem duas formas de criar um Template:
 1. Criar o Template diretamente na pasta de Stack.
 2. Criar o Template local já atrelado a algum repositório.
 
-Este tutorial vai mostrar a segunda opção. Para mais detalhes da primeira forma, consulte a página [<ins>**`Criar uma Stack`**</ins>]({{< ref path="/docs/Creators Guide/howto-create-stack.md" >}})
+Este tutorial vai mostrar a segunda opção. Para mais detalhes da primeira forma, consulte a página [<ins>**`Criar uma Stack`**</ins>]({{< ref path="/docs/Creators Guide/howto-create-stack.mdx" >}})
 
 ### **Passo 1. Criar um repositório vazio para armazenar o Template** 
 Crie um repositório que será a base para armazenar seu Template. Você pode criá-lo em qualquer plataforma de hospedagem de código Git (como GitHub ou GitLab) e pode ser público ou privado.
@@ -89,7 +96,7 @@ Se você criar um Template para criação de aplicações Kotlin, por exemplo, e
 
 Na prática, existem configurações que podem ser personalizadas e, para isso, é necessário captar informações de quem vai usar o seu Template para criar aplicações.
 
-Para mais detalhes, veja a seção da [documentação sobre a **estrutura do `template.yaml`**]({{< ref path="/docs/Creators Guide/Configuration/yaml.md" >}}).
+Para mais detalhes, veja a seção da [documentação sobre a **estrutura do `template.yaml`**]({{< ref path="/docs/Creators Guide/Configuration/yaml.mdx" >}}).
 
 ### **Passo 5. Personalizar o seu Template**  
 1. Edite o arquivo **template.yaml** adicionando um novo input chamado **group_id** e suas respectivas informações. Confira na imagem a seguir:

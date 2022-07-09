@@ -8,34 +8,34 @@ description: >-
 A nova versão traz novas atualizações como a evolução de **`os`** para **`stk`**. Veja mais abaixo: 
 
 ## **Criadores de Studios**
-- Adição de Hooks para definir a execução de ações em momentos específicos da aplicação de um template. Veja a seção [**Usar um Declarative Hook**]({{< ref path="/docs/Creators Guide/Configuration/howto-use-hooks.md" >}}).
+- Adição de Hooks para definir a execução de ações em momentos específicos da aplicação de um template. Veja a seção [**Usar um Declarative Hook**]({{< ref path="/docs/Creators Guide/Configuration/howto-use-hooks.mdx" >}}).
 - Possibilidade de validar inputs de usuário. STK CLI permite aos criadores configurar uma validação do input nos parâmetros do plugin/template através de um pattern regex.
 
 ![](//stkgifs/stk-create-app-input-regex-validator.gif)
 
 - Validação que não permite caracteres especiais no nome da pasta da aplicação.
-- Criação do comando [**`stk add template`**]({{< ref path="/docs/References/Commands List/stk-add-template.md" >}}) para adicionar um template à uma stack.
+- Criação do comando [**`stk add template`**]({{< ref path="/docs/References/Commands List/stk-add-template.mdx" >}}) para adicionar um template à uma stack.
 
 ## **Usuários**
 - Envio de parâmetros para o plugin via input flag. Os inputs de um template/plugin podem ser passados por parâmetro em um único comando.
 
 - Autenticidade (notarize) Apple de Apps dos pacotes PKG. Agora o instalador de MacOS está adequado ao processo de notarize.
-- Criação do comando [**`stk list stack`**]({{< ref path="/docs/References/Commands List/stk-list-stack.md" >}}) para os consumidores listarem todas as stacks importadas. Veja um exemplo:
+- Criação do comando [**`stk list stack`**]({{< ref path="/docs/References/Commands List/stk-list-stack.mdx" >}}) para os consumidores listarem todas as stacks importadas. Veja um exemplo:
 
 ![](/v3.0.0/stkgifs/stk-list-stack.gif)
 
 ## **Mudanças**
-- Atualização do comando [**`stk create template`**]({{< ref path="/docs/References/Commands List/stk-create-template.md" >}}) para criar um arquivo template.yaml ao invés de um arquivo [**`plugin.yaml`**]({{< ref path="/docs/Creators Guide/Configuration/yaml.md" >}}) (com retrocompatibilidade).
-- Atualização do comando [**`stk create_catalog.yaml`**]({{< ref path="/docs/References/Commands List/stk-create-stack.md" >}}) (com retrocompatibilidade).
+- Atualização do comando [**`stk create template`**]({{< ref path="/docs/References/Commands List/stk-create-template.mdx" >}}) para criar um arquivo template.yaml ao invés de um arquivo [**`plugin.yaml`**]({{< ref path="/docs/Creators Guide/Configuration/yaml.mdx" >}}) (com retrocompatibilidade).
+- Atualização do comando [**`stk create_catalog.yaml`**]({{< ref path="/docs/References/Commands List/stk-create-stack.mdx" >}}) (com retrocompatibilidade).
 - Atualização da listagem de plugins e templates, permitindo agora filtrar por nome e descrição. 
-- Atualização das mensagens de [**`--help`**]({{< ref path="/docs/References/Commands List/stk-help.md" >}}) dos comandos.
-- Alteração do comando `stk add catalog` para [**`stk import stack`**]({{< ref path="/docs/References/Commands List/stk-import-stack.md" >}}).
+- Atualização das mensagens de [**`--help`**]({{< ref path="/docs/References/Commands List/stk-help.mdx" >}}) dos comandos.
+- Alteração do comando `stk add catalog` para [**`stk import stack`**]({{< ref path="/docs/References/Commands List/stk-import-stack.mdx" >}}).
 - Alteração dos domínios de orangestack.com para stackspot.com
 
 
 ## **Resolução de problemas (Bug Fixes)**
 
-- Comando [**`stk update stack`**]({{< ref path="/docs/References/Commands List/stk-update-stack.md" >}}) mostra os novos repositórios separados que foram adicionados a stack.
-- Autocomplete funciona no [**MacOs**]({{< ref path="/docs/STK CLI/Installation/Macos.md" >}}) e [**Linux**]({{< ref path="/docs/STK CLI/Installation/Linux.md" >}}) logo após instalação.
+- Comando [**`stk update stack`**]({{< ref path="/docs/References/Commands List/stk-update-stack.mdx" >}}) mostra os novos repositórios separados que foram adicionados a stack.
+- Autocomplete funciona no [**MacOs**]({{< ref path="/docs/STK CLI/Installation/Macos.mdx" >}}) e [**Linux**]({{< ref path="/docs/STK CLI/Installation/Linux.mdx" >}}) logo após instalação.
 - Instaladores **`.deb`**, **`.rpm`** e **`.pkg`** funcionam sem precisar de root e cria pastas e arquivos atribuídos ao usuário e não ao root.
 

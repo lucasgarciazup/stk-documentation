@@ -7,7 +7,7 @@ description: >-
 
 ## **O que são stackfiles?**
 
-Stackfiles são bundles, ou seja, um conjunto de Templates e Plugins predefinidos de uma Stack que serão aplicados nos comandos [**`stk create app`**]({{< ref path="/docs/References/Commands List/stk-create-app.md" >}})) ou [**`stk create env`**]({{< ref path="/docs/References/Commands List/stk-create-env.md" >}})).
+Stackfiles são bundles, ou seja, um conjunto de Templates e Plugins predefinidos de uma Stack que serão aplicados nos comandos [**`stk create app`**]({{< ref path="/docs/References/Commands List/stk-create-app.mdx" >}})) ou [**`stk create env`**]({{< ref path="/docs/References/Commands List/stk-create-env.mdx" >}})).
 
 
 Quando você utiliza um Stackfile, você pode criar um **`env`** ou um **`app`** e aplicá-los em um conjunto de Plugins com um único comando do **`stk cli`**.
@@ -94,8 +94,8 @@ Veja abaixo o exemplo do layout de um repositório com Stackfiles:
 ## **Como utilizar os Stackfiles?**
 
 Os Stackfiles podem ser utilizados com os comandos 
-- [**`stk create app`**]({{< ref path="/docs/References/Commands List/stk-create-app.md" >}})
-- [**`stk create env`**]({{< ref path="/docs/References/Commands List/stk-create-env.md" >}}) 
+- [**`stk create app`**]({{< ref path="/docs/References/Commands List/stk-create-app.mdx" >}})
+- [**`stk create env`**]({{< ref path="/docs/References/Commands List/stk-create-env.mdx" >}}) 
 
 Para Stackfiles incluídos na própria Stack use a sintaxe:
 
@@ -106,10 +106,12 @@ stk create app nome-app --stackfile <nome-stack>/<nome-stackfile>
 
 - Quando você utilizar o Stackfile, o Template e o Plugin já definidos, o app será aplicado com as mesmas definições.
 
-A mesma lógica pode ser usada no [**`stk create env`**]({{< ref path="/docs/References/Commands List/stk-create-env.md" >}}) para aplicar Stackfiles do tipo **`env`**.
+A mesma lógica pode ser usada no [**`stk create env`**]({{< ref path="/docs/References/Commands List/stk-create-env.mdx" >}}) para aplicar Stackfiles do tipo **`env`**.
 
 <alert color="secondary">
+
 O nome do Stackfile é opcional e pode ser omitido. Neste caso é usado o Stackfile default da Stack, representado pelo arquivo **`default.yaml`**. 
+
 </alert>
 
 

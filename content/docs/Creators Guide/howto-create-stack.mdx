@@ -11,7 +11,7 @@ Uma **Stack** é um conjunto de Plugins, Templates, e Stackfiles que, quando usa
 
 Para criar a sua Stack, confira os seguintes itens:
 
-- [<ins>**Verifique se o STK CLI está atualizado**</ins>]({{< ref path="/stk-upgrade.md" >}})
+- [<ins>**Verifique se o STK CLI está atualizado**</ins>]({{< ref path="/stk-upgrade.mdx" >}})
 - <a href="https://git-scm.com/downloads" target="_blank"><strong><ins>Verifique se o Git está atualizado</ins></strong></a>
 - Crie um repositório dedicado para publicar a sua Stack. Você pode criá-lo em qualquer plataforma de hospedagem de código Git (como GitHub ou GitLab) e pode ser público ou privado.
 
@@ -86,8 +86,8 @@ Depois de criar a Stack, entre na pasta dela e execute o comando abaixo:
 <alert color="secondary">
 
 Caso deseje compartilhar os Templates e Plugins com outras Stacks, leia os guias:
-- [<ins>**Criar Templates**</ins>]({{< ref path="/docs/Creators Guide/howto-create-template.md" >}})
-- [<ins>**Criar Plugins**</ins>]({{< ref path="/docs/Creators Guide/howto-create-plugin.md" >}}). 
+- [<ins>**Criar Templates**</ins>]({{< ref path="/docs/Creators Guide/howto-create-template.mdx" >}})
+- [<ins>**Criar Plugins**</ins>]({{< ref path="/docs/Creators Guide/howto-create-plugin.mdx" >}}). 
 
 </alert>
 
@@ -123,7 +123,7 @@ Se nenhum destes argumentos forem passados, o comando fará algumas perguntas, c
 
 Após criar o Template, dentro da sua Stack é criada uma pasta com o nome do Template e dentro dessa pasta, também são geradas a pasta **`templates`** e o arquivo **`template.yaml`**.  
 
-Na pasta **`templates`**, você deve criar o código fonte do Template. Exemplo: Um Template HTML pode ser composto por um arquivo **`index.html`**. Veja mais sobre Templates na seção [**Criar um template**]({{< ref path="/howto-create-template.md" >}}).  
+Na pasta **`templates`**, você deve criar o código fonte do Template. Exemplo: Um Template HTML pode ser composto por um arquivo **`index.html`**. Veja mais sobre Templates na seção [**Criar um template**]({{< ref path="/howto-create-template.mdx" >}}).  
 
 >Você pode criar diversos arquivos na pasta **`templates`** usando diferentes linguagens de programação, e todos os arquivos suportam expressões [**`Jinja`**](https://jinja.palletsprojects.com/en/3.1.x/) para ações como interpolação de valores ou condicionais, além da possibilidade de nomear pastas com expressões Jinja.
 
@@ -134,7 +134,7 @@ Quando o Template for definido, é preciso indicar as entradas que serão pergun
 - Tipo (que já foi definido na criação do Template);  
 - O **`project-name`**: onde é definido o nome dado no comando **`stk create app`**. 
 
-> Para definir e encontrar os **`inputs`** e os **`computed-inputs`**, acesse a [**seção de Arquivos.yaml**]({{< ref path="/yaml.md" >}})
+> Para definir e encontrar os **`inputs`** e os **`computed-inputs`**, acesse a [**seção de Arquivos.yaml**]({{< ref path="/yaml.mdx" >}})
 
 ### **Passo 4: Criar um Plugin**  
 Para criar um Plugin, ainda dentro da pasta da Stack execute o comando abaixo:
@@ -157,7 +157,7 @@ Dentro da sua Stack, por padrão é gerada a pasta **stackfiles** e dentro dela 
 stk create stackfile <nome-do-stackfile>
 ```
 
-Depois que o [<ins>**stackfile**</ins>]({{< ref path="/docs/References/Commands List/stk-create-stackfile.md" >}}) foi criado, é possível definir o tipo dele e predefinir um input. 
+Depois que o [<ins>**stackfile**</ins>]({{< ref path="/docs/References/Commands List/stk-create-stackfile.mdx" >}}) foi criado, é possível definir o tipo dele e predefinir um input. 
 
 ### **Passo 6: Publicar e importar a Stack**  
 
@@ -183,6 +183,6 @@ Agora, é possível usar tanto o Template, quanto o Plugin e o Stackfile criados
 
 ## **Leia também**
 Aprenda sobre os comandos relacionados à criação de uma Stack:
-- Adicione uma Stack ao seu projeto com [<ins>**`stk import stack`**</ins>]({{< ref path="/docs/References/Commands List/stk-import-stack.md" >}}).
-- Liste as Stacks disponíveis com [<ins>**`stk list stack`**</ins>]({{< ref path="/docs/References/Commands List/stk-list-stack.md" >}}).
-- Atualize todas as Stacks disponíveis com [<ins>**`stk update stack`**</ins>]({{< ref path="/docs/References/Commands List/stk-update-stack.md" >}}).  
+- Adicione uma Stack ao seu projeto com [<ins>**`stk import stack`**</ins>]({{< ref path="/docs/References/Commands List/stk-import-stack.mdx" >}}).
+- Liste as Stacks disponíveis com [<ins>**`stk list stack`**</ins>]({{< ref path="/docs/References/Commands List/stk-list-stack.mdx" >}}).
+- Atualize todas as Stacks disponíveis com [<ins>**`stk update stack`**</ins>]({{< ref path="/docs/References/Commands List/stk-update-stack.mdx" >}}).  

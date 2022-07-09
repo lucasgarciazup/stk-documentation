@@ -9,13 +9,15 @@ type HeadingTag = OneOfFontAppearances
 
 type HeadingProps = {
     children: React.ReactNode
+    location: Location
 }
 
 function createHeading(tag: HeadingTag) {
     const Heading: React.FC<HeadingProps> = props => {
 
         const id = slugger.slug(innerText(props.children))
-        const copyLink = new URL(window.location.href);
+        console.log(props)
+        const copyLink = new URL('https://docs.stackspot.com/docs');
         copyLink.hash = id;
 
         return (

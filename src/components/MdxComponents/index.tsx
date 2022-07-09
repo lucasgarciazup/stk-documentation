@@ -2,6 +2,7 @@ import { MDXProviderComponentsProp } from '@mdx-js/react';
 import Alert from './Alert';
 import Anchor from './Anchor';
 import Code from './Code';
+import Divider from './Divider';
 import { H1, H2, H3, H4, H5, H6 } from './Heading';
 import InlineCode from './InlineCode';
 import Paragraph from './Paragraph';
@@ -30,6 +31,7 @@ const MdxComponents: MDXProviderComponentsProp = {
   alert: Alert,
   tabs: Tabs,
   tab: TabItem,
+  hr: Divider
 }
 
 export default MdxComponents

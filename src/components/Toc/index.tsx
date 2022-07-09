@@ -23,9 +23,10 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ toc }) => {
     console.warn("There's no heading to render for toc")
     return null;
   }
+  
   const createTree = (items: TocItem[]) => {
     return (
-      <Flex as="ul" px={5} flexDirection="column">
+      <Flex as="ul" px={5} pr={0} flexDirection="column">
         {items.map(({ url, title, items }, index) => (
           <Flex as="li" key={index} sx={{ p: 3 }}>
             {url && <Link textDecoration="none" href={url}>{title}</Link>}

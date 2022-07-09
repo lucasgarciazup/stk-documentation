@@ -18,7 +18,7 @@ Ao publicar um studio de Stack, o criador **deve garantir a existência de Templ
 
 Cada Stack pode ter objetivos diferentes e endereçar diferentes tipos de produtos. É o criador quem define a estratégia de desenho de suas Stacks para que os seus usuários consigam atingir seus objetivos, com uma baixa carga cognitiva e alta qualidade.
 
-O criador cria Templates por meio do comando [<ins>**`stk create template`**</ins>]({{< ref path="/stk-create-template.md" >}}), e eles são a base de um projeto para o usuário utilizar.
+O criador cria Templates por meio do comando [<ins>**`stk create template`**</ins>]({{< ref path="/stk-create-template.mdx" >}}), e eles são a base de um projeto para o usuário utilizar.
 
 Os Templates podem ser de linguagens específicas e, com isso, podem utilizar os Plugins compatíveis com essa mesma linguagem.
 
@@ -46,10 +46,10 @@ No STK CLI, os comandos são divididos em três categorias básicas: Core, Criad
 - Os **comandos Core** são usados tanto pelos criadores quanto pelos usuários de Stacks;
 - Os **comandos para Criadores** são utilizados na criação de Stacks, Templates e Plugins;
 - Os **comandos para Usuários** são voltados para o consumo das Stacks produzidas. É possível adicionar Stacks, usar Templates e Plugins para criar aplicações e ambientes.
-Para mais informações, acesse a seção [<ins>**Comandos**</ins>]({{< ref path="STK CLI/Commands.md">}}).
+Para mais informações, acesse a seção [<ins>**Comandos**</ins>]({{< ref path="STK CLI/Commands.mdx">}}).
 
 ## **Stack**
-É o conjunto de Templates, Plugins e [<ins>**Stackfiles**</ins>]({{< ref path="Creators Guide/howto-create-stackfiles.md">}}) usados para criar [**aplicações (app)**]({{< ref path="/glossary.md#aplicação-app" >}}) e [**ambientes (env)**]({{< ref path="/glossary.md#ambiente-env" >}}). Uma Stack é um repositório Git criado pelo comando [<ins>**`stk create stack`**</ins>]({{< ref path="/stk-create-stack.md" >}}) do STK CLI. Nele, os Plugins e Templates criados pelo estúdio podem ser adicionados por meio dos comandos [<ins>**stk add plugin**</ins>]({{< ref path="/stk-add-plugin.md" >}}) ou [<ins>**stk add template**</ins>]({{< ref path="/stk-add-template.md" >}}) dentro da pasta da Stack. 
+É o conjunto de Templates, Plugins e [<ins>**Stackfiles**</ins>]({{< ref path="Creators Guide/howto-create-stackfiles.mdx">}}) usados para criar [**aplicações (app)**]({{< ref path="/glossary.md#aplicação-app" >}}) e [**ambientes (env)**]({{< ref path="/glossary.md#ambiente-env" >}}). Uma Stack é um repositório Git criado pelo comando [<ins>**`stk create stack`**</ins>]({{< ref path="/stk-create-stack.mdx" >}}) do STK CLI. Nele, os Plugins e Templates criados pelo estúdio podem ser adicionados por meio dos comandos [<ins>**stk add plugin**</ins>]({{< ref path="/stk-add-plugin.mdx" >}}) ou [<ins>**stk add template**</ins>]({{< ref path="/stk-add-template.mdx" >}}) dentro da pasta da Stack. 
 
 Dentro dela, os Plugins e Templates viram Plugins em repositórios separados. Eles podem ser versionados de forma individual e mantidos por times diferentes que não necessariamente tenham acesso ao repositório da Stack.
 
@@ -59,7 +59,7 @@ Essas variáveis são: linguagem de programação, build system, frameworks, emp
 
 Em resumo: o Template deve definir todas as capacidades básicas e padronizadas de uma Stack, que depois poderão ser estendidas por meio de Plugins.
 
-De acordo com a estratégia que o estúdio quer adotar na Stack, um Template pode ser complexo ou básico. Dependendo dos tipos definidos no Template, ele pode ser usado nos comandos[<ins>**`stk create app`**</ins>]({{< ref path="/stk-create-app.md" >}}) e/ou [<ins>**`stk create env`**</ins>]({{< ref path="/stk-create-env.md" >}}) para criar uma Stack.
+De acordo com a estratégia que o estúdio quer adotar na Stack, um Template pode ser complexo ou básico. Dependendo dos tipos definidos no Template, ele pode ser usado nos comandos[<ins>**`stk create app`**</ins>]({{< ref path="/stk-create-app.mdx" >}}) e/ou [<ins>**`stk create env`**</ins>]({{< ref path="/stk-create-env.mdx" >}}) para criar uma Stack.
 
 
 Cada Template é versionado em um repositório Git e o estúdio publica os Templates em uma Stack que agrupa os Plugins e Templates. O versionamento dos Templates deve aderir ao [**versionamento semântico**](https://semver.org/), pois o STK CLI sempre mantém os Templates na última tag publicada, que pode ser na branch main, ou quando não houver tags, na master.
@@ -71,9 +71,9 @@ A estrutura de um Plugin é igual a de um Template, com exceção dos tipos, que
 
 ## **Stackfiles**
 
-São bundles, ou seja, um conjunto de Templates e Plugins predefinidos de uma Stack, que serão aplicados nos comandos [**`stk create app`**]({{< ref path="/docs/References/Commands List/stk-create-app.md" >}}) ou [**`stk create env`**]({{< ref path="/docs/References/Commands List/stk-create-env.md" >}}). Ao utilizar um Stackfile, o usuário pode criar um **app** ou **env** e aplicar um bundle de Plugins em um único comando do STK CLI.
+São bundles, ou seja, um conjunto de Templates e Plugins predefinidos de uma Stack, que serão aplicados nos comandos [**`stk create app`**]({{< ref path="/docs/References/Commands List/stk-create-app.mdx" >}}) ou [**`stk create env`**]({{< ref path="/docs/References/Commands List/stk-create-env.mdx" >}}). Ao utilizar um Stackfile, o usuário pode criar um **app** ou **env** e aplicar um bundle de Plugins em um único comando do STK CLI.
 
 Os Stackfiles são úteis para que os criadores de Stack definam dentro da própria Stack combinações comuns de Templates e Plugins, e definam "receitas prontas" para as combinações mais comuns dentro da Stack.
 
-Os usuários podem definir seus próprios [**Stackfiles**]({{< ref path="/docs/Creators Guide/howto-create-stackfiles.md" >}}) para agilizar o processo de criação de projetos que usem um bundle predefinido de Templates e Plugins.
+Os usuários podem definir seus próprios [**Stackfiles**]({{< ref path="/docs/Creators Guide/howto-create-stackfiles.mdx" >}}) para agilizar o processo de criação de projetos que usem um bundle predefinido de Templates e Plugins.
 

@@ -23,7 +23,8 @@ interface Props {
       }
       toc: any
     }
-  }
+  },
+  location: Location
 }
 
 
@@ -35,14 +36,15 @@ const Layout: React.FC<Props> = (
       frontmatter,
       toc
     } 
-  }
+  }, 
+  location
 }) => {
   return (
     <ThemeProvider theme={theme}>
       <Navbar />
       <Flex sx={{ minHeight: "90vh" }}>
         <Box as="aside" sx={{ w: [2, 2, 0]}}>
-          <Sidebar />
+          <Sidebar location={location}/>
         </Box>
         <Box as="main" sx={{ w: [8, 8, 12], p: 10, bg: 'light.500'}}>
           <MDXProvider components={MdxComponents} >
